@@ -1,12 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEE Command Center</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fb;
+color:#172033;
+transition:.25s;
+}
+
+body.dark{
+background:#0d1422;
+color:#f5f7ff;
+}
+
+header{
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+padding:28px 18px;
+text-align:center;
+}
+
+header h1{font-size:30px}
+header p{margin-top:7px;opacity:.9}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:18px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:15px;
+margin-bottom:15px;
+}
+
+.card{
+background:white;
+border-radius:18px;
+padding:18px;
+margin-bottom:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.dark .card{
+background:#182235;
+color:white;
+}
+
+h2{
+margin-bottom:14px;
+font-size:20px;
+}
+
+input,select,button{
+width:100%;
+padding:11px;
+margin-top:8px;
+border-radius:10px;
+border:1px solid #d4d9e2;
+font-size:15px;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:0;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{opacity:.9}
+
+.stat{
+font-size:30px;
+font-weight:bold;
+margin:8px 0;
+}
+
+.progress{
+height:12px;
+background:#e6eaf0;
+border-radius:20px;
+overflow:hidden;
+margin-top:8px;
+}
+
+.progress div{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#2563eb,#7c3aed);
+transition:.4s;
+}
+
+.subject{
+border:1px solid #e1e5eb;
+padding:13px;
+border-radius:13px;
+margin:9px 0;
+}
+
+.dark .subject{
+border-color:#334155;
+}
+
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.badge{
+display:inline-block;
+padding:6px 10px;
+border-radius:20px;
+background:#ede9fe;
+color:#6d28d9;
+font-weight:bold;
+margin:3px;
+font-size:13px;
+}
+
+.dark .badge{
+background:#312e81;
+color:#ddd6fe;
+}
+
+.timer{
+font-size:52px;
+font-weight:bold;
+text-align:center;
+margin:15px;
+}
+
+.center{text-align:center}
+
+.chapter-row{
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:10px 0;
+border-bottom:1px solid #ddd;
+}
+
+.dark .chapter-row{
+border-color:#334155;
+}
+
+.small{
+font-size:13px;
+opacity:.7;
+margin-top:7px;
+}
+
+.plan-box{
+padding:15px;
+border-radius:14px;
+background:#eef2ff;
+margin-top:12px;
+}
+
+.dark .plan-box{
+background:#202c45;
+}
+
+.danger{
+background:#dc2626;
+}
+
+.green{
+background:#16a34a;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+th,td{
+padding:9px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+.dark th,.dark td{
+border-color:#334155;
+}
+
+@media(max-width:600px){
+header h1{font-size:24px}
+.container{padding:10px}
+.row{grid-template-columns:1fr}
+.timer{font-size:42px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🚀 JEE COMMAND CENTER</h1>
+<p>Plan • Study • Practice • Revise • Conquer</p>
+</header>
+
+<div class="container">
+
+<!-- DASHBOARD -->
+
+<div class="grid">
+
+<div class="card">
+<h2>🎯 Target</h2>
+<input id="target" placeholder="Example: AIR 1000">
+<button onclick="saveTarget()">Save Target</button>
+<p id="targetShow" class="small"></p>
+</div>
+
+<div class="card">
+<h2>🔥 Study Streak</h2>
+<div class="stat" id="streak">0 🔥</div>
+<button onclick="studyToday()">I Studied Today</button>
+</div>
+
+<div class="card">
+<h2>🏆 Level</h2>
+<div class="stat">Lv. <span id="level">1</span></div>
+<p><span id="xp">0</span> XP</p>
+<div class="progress">
+<div id="xpBar"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>📈 JEE Readiness</h2>
+<div class="stat">
+<span id="readiness">0</span>%
+</div>
+<div class="progress">
+<div id="readinessBar"></div>
+</div>
+</div>
+
+</div>
+
+
+<!-- SUBJECT PROGRESS -->
+
+<div class="card">
+
+<h2>📚 Subject Progress</h2>
+
+<div class="subject">
+<b>⚡ Physics</b>
+<input id="phy" type="number" min="0" max="100" placeholder="Completion %">
+<div class="progress">
+<div id="phyBar"></div>
+</div>
+</div>
+
+<div class="subject">
+<b>🧪 Chemistry</b>
+<input id="chem" type="number" min="0" max="100" placeholder="Completion %">
+<div class="progress">
+<div id="chemBar"></div>
+</div>
+</div>
+
+<div class="subject">
+<b>📐 Mathematics</b>
+<input id="math" type="number" min="0" max="100" placeholder="Completion %">
+<div class="progress">
+<div id="mathBar"></div>
+</div>
+</div>
+
+<button onclick="saveSubjects()">Save Subject Progress</button>
+
+</div>
+
+
+<!-- BACKLOG -->
+
+<div class="card">
+
+<h2>📦 Backlog Tracker</h2>
+
+<div class="row">
+
+<div>
+<label>Physics lectures remaining</label>
+<input id="phyBacklog" type="number">
+</div>
+
+<div>
+<label>Chemistry lectures remaining</label>
+<input id="chemBacklog" type="number">
+</div>
+
+<div>
+<label>Maths lectures remaining</label>
+<input id="mathBacklog" type="number">
+</div>
+
+<div>
+<label>Daily lectures target</label>
+<input id="dailyLectures" type="number">
+</div>
+
+</div>
+
+<button onclick="saveBacklog()">Save Backlog</button>
+
+<p id="backlogResult" class="small"></p>
+
+</div>
+
+
+<!-- CHAPTER TRACKER -->
+
+<div class="card">
+
+<h2>📚 Class 11 JEE Chapter Tracker</h2>
+
+<div class="row">
+
+<select id="chapterSubject" onchange="loadChapters()">
+
+<option value="">Select Subject</option>
+
+<option value="Physics">⚡ Physics</option>
+
+<option value="Chemistry">🧪 Chemistry</option>
+
+<option value="Mathematics">📐 Mathematics</option>
+
+</select>
+
+<select id="chapterName">
+
+<option value="">Select Chapter</option>
+
+</select>
+
+</div>
+
+<select id="chapterStatus">
+
+<option>Not Started</option>
+<option>Learning</option>
+<option>Revision</option>
+<option>Strong</option>
+
+</select>
+
+<button onclick="saveChapter()">✅ Save Chapter Status</button>
+
+<div id="allChapters" style="margin-top:15px"></div>
+
+</div>
+
+
+<!-- QUESTIONS -->
+
+<div class="card">
+
+<h2>📝 Question Tracker</h2>
+
+<div class="row">
+
+<div>
+<label>Attempted</label>
+<input id="attempted" type="number">
+</div>
+
+<div>
+<label>Correct</label>
+<input id="correct" type="number">
+</div>
+
+<div>
+<label>Wrong</label>
+<input id="wrong" type="number">
+</div>
+
+</div>
+
+<button onclick="saveQuestions()">Save Questions</button>
+
+<div class="grid" style="margin-top:15px">
+
+<div>
+<b>Questions</b>
+<div class="stat" id="attemptedShow">0</div>
+</div>
+
+<div>
+<b>Accuracy</b>
+<div class="stat">
+<span id="accuracy">0</span>%
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TIMER -->
+
+<div class="card">
+
+<h2>⏱️ Focus Timer</h2>
+
+<div class="timer" id="timer">
+25:00
+</div>
+
+<div class="row">
+
+<button onclick="startTimer()">▶ Start</button>
+<button onclick="pauseTimer()">⏸ Pause</button>
+
+</div>
+
+<button onclick="resetTimer()">🔄 Reset</button>
+
+</div>
+
+
+<!-- REVISION -->
+
+<div class="card">
+
+<h2>🔄 Revision Tracker</h2>
+
+<div class="row">
+
+<input id="revisionChapter" placeholder="Chapter">
+
+<input id="revisionDate" type="date">
+
+</div>
+
+<button onclick="addRevision()">Add Revision</button>
+
+<div id="revisionList"></div>
+
+</div>
+
+
+<!-- SMART PLANNER -->
+
+<div class="card">
+
+<h2>🧠 Smart Study Planner</h2>
+
+<div class="row">
+
+<input id="studyHours"
+type="number"
+placeholder="Available study hours">
+
+<input id="plannerQuestions"
+type="number"
+placeholder="Questions target">
+
+</div>
+
+<button onclick="makePlan()">
+Generate Today's Plan
+</button>
+
+<div id="plan"></div>
+
+</div>
+
+
+<!-- ACHIEVEMENTS -->
+
+<div class="card">
+
+<h2>🏆 Achievements</h2>
+
+<div id="achievements"></div>
+
+</div>
+
+
+<!-- SETTINGS -->
+
+<div class="card">
+
+<h2>⚙️ Settings & Backup</h2>
+
+<button onclick="toggleDark()">
+🌙 Dark / Light Mode
+</button>
+
+<div class="row">
+
+<button onclick="exportData()">
+⬇️ Export Backup
+</button>
+
+<button onclick="importData()">
+⬆️ Import Backup
+</button>
+
+</div>
+
+<input
+type="file"
+id="fileInput"
+accept=".json"
+style="display:none"
+>
+
+</div>
+
+</div>
+
+
 <script>
 
 /* =========================
    JEE CLASS 11 CHAPTERS
 ========================= */
 
-const chapters = {
+const chapters={
 
-Physics: [
+Physics:[
+
 "Units and Measurements",
 "Mathematical Tools",
 "Motion in a Straight Line",
@@ -22,12 +555,14 @@ Physics: [
 "Kinetic Theory",
 "Oscillations",
 "Waves"
+
 ],
 
-Chemistry: [
+Chemistry:[
+
 "Some Basic Concepts of Chemistry",
 "Structure of Atom",
-"Classification of Elements and Periodicity",
+"Classification of Elements and Periodicity in Properties",
 "Chemical Bonding and Molecular Structure",
 "States of Matter",
 "Thermodynamics",
@@ -35,12 +570,14 @@ Chemistry: [
 "Redox Reactions",
 "Hydrogen",
 "The s-Block Elements",
-"Organic Chemistry – Basic Principles",
+"Organic Chemistry – Some Basic Principles and Techniques",
 "Hydrocarbons",
 "Environmental Chemistry"
+
 ],
 
-Mathematics: [
+Mathematics:[
+
 "Sets",
 "Relations and Functions",
 "Trigonometric Functions",
@@ -55,7 +592,9 @@ Mathematics: [
 "Limits and Derivatives",
 "Statistics",
 "Probability"
+
 ]
+
 };
 
 
@@ -63,7 +602,9 @@ Mathematics: [
    DATA
 ========================= */
 
-let data = JSON.parse(localStorage.getItem("jeeApp")) || {
+let data=JSON.parse(
+localStorage.getItem("jeeCommandCenter")
+)||{
 
 target:"",
 streak:0,
@@ -94,6 +635,7 @@ chapterProgress:{},
 revisions:[],
 
 dark:false
+
 };
 
 
@@ -104,135 +646,11 @@ dark:false
 function save(){
 
 localStorage.setItem(
-"jeeApp",
+"jeeCommandCenter",
 JSON.stringify(data)
 );
 
 updateUI();
-
-}
-
-
-/* =========================
-   CHAPTER DROPDOWN
-========================= */
-
-function loadChapters(){
-
-let subject =
-document.getElementById("chapterSubject").value;
-
-let dropdown =
-document.getElementById("chapterName");
-
-dropdown.innerHTML =
-'<option value="">Select Chapter</option>';
-
-if(!subject)return;
-
-chapters[subject].forEach(chapter=>{
-
-let option =
-document.createElement("option");
-
-option.value=chapter;
-option.textContent=chapter;
-
-dropdown.appendChild(option);
-
-});
-
-}
-
-
-/* =========================
-   ADD / UPDATE CHAPTER
-========================= */
-
-function addChapter(){
-
-let subject =
-document.getElementById("chapterSubject").value;
-
-let chapter =
-document.getElementById("chapterName").value;
-
-let status =
-document.getElementById("chapterStatus").value;
-
-if(!subject || !chapter){
-
-alert("Pehle subject aur chapter select karo.");
-
-return;
-
-}
-
-if(!data.chapterProgress[subject]){
-data.chapterProgress[subject]={};
-}
-
-data.chapterProgress[subject][chapter]=status;
-
-data.xp+=5;
-
-save();
-
-alert(
-"✅ "+chapter+
-" → "+status
-);
-
-}
-
-
-/* =========================
-   SHOW ALL CHAPTERS
-========================= */
-
-function showChapters(){
-
-let box =
-document.getElementById("allChapters");
-
-box.innerHTML="";
-
-Object.keys(chapters).forEach(subject=>{
-
-let html=
-`<div class="subject">
-<h3>${subject}</h3>`;
-
-chapters[subject].forEach(chapter=>{
-
-let status =
-data.chapterProgress?.[subject]?.[chapter]
-|| "Not Started";
-
-html+=`
-<div style="
-display:flex;
-justify-content:space-between;
-padding:8px 0;
-border-bottom:1px solid #ddd;
-">
-
-<span>${chapter}</span>
-
-<span class="badge">
-${status}
-</span>
-
-</div>
-`;
-
-});
-
-html+="</div>";
-
-box.innerHTML+=html;
-
-});
 
 }
 
@@ -243,7 +661,7 @@ box.innerHTML+=html;
 
 function saveTarget(){
 
-data.target =
+data.target=
 document.getElementById("target").value;
 
 save();
@@ -252,12 +670,12 @@ save();
 
 
 /* =========================
-   STUDY STREAK
+   STREAK
 ========================= */
 
 function studyToday(){
 
-let today =
+let today=
 new Date().toDateString();
 
 if(data.lastStudy!==today){
@@ -270,15 +688,11 @@ data.xp+=20;
 
 save();
 
-alert(
-"🔥 Today's study recorded! +20 XP"
-);
+alert("🔥 Study recorded! +20 XP");
 
 }else{
 
-alert(
-"Bhai, aaj already recorded hai 😎"
-);
+alert("Bhai, aaj already record ho chuka hai 😎");
 
 }
 
@@ -286,27 +700,36 @@ alert(
 
 
 /* =========================
-   SUBJECT PROGRESS
+   SUBJECTS
 ========================= */
 
 function saveSubjects(){
 
-data.subjects.phy =
+data.subjects.phy=
 Math.min(
 100,
-+document.getElementById("phy").value || 0
+Math.max(
+0,
+Number(document.getElementById("phy").value)||0
+)
 );
 
-data.subjects.chem =
+data.subjects.chem=
 Math.min(
 100,
-+document.getElementById("chem").value || 0
+Math.max(
+0,
+Number(document.getElementById("chem").value)||0
+)
 );
 
-data.subjects.math =
+data.subjects.math=
 Math.min(
 100,
-+document.getElementById("math").value || 0
+Math.max(
+0,
+Number(document.getElementById("math").value)||0
+)
 );
 
 data.xp+=10;
@@ -322,30 +745,29 @@ save();
 
 function saveBacklog(){
 
-data.backlog.phy =
-+document.getElementById("phyBacklog").value || 0;
+data.backlog.phy=
+Number(document.getElementById("phyBacklog").value)||0;
 
-data.backlog.chem =
-+document.getElementById("chemBacklog").value || 0;
+data.backlog.chem=
+Number(document.getElementById("chemBacklog").value)||0;
 
-data.backlog.math =
-+document.getElementById("mathBacklog").value || 0;
+data.backlog.math=
+Number(document.getElementById("mathBacklog").value)||0;
 
-data.backlog.daily =
-+document.getElementById("dailyLectures").value || 1;
+data.backlog.daily=
+Number(document.getElementById("dailyLectures").value)||1;
 
-let total =
+let total=
 data.backlog.phy+
 data.backlog.chem+
 data.backlog.math;
 
-let days =
+let days=
 Math.ceil(
 total/data.backlog.daily
 );
 
 document.getElementById("backlogResult").innerText=
-
 "📦 Total Backlog: "+
 total+
 " lectures | Approx. "+
@@ -358,19 +780,139 @@ save();
 
 
 /* =========================
-   QUESTION TRACKER
+   CHAPTER DROPDOWN
+========================= */
+
+function loadChapters(){
+
+let subject=
+document.getElementById("chapterSubject").value;
+
+let dropdown=
+document.getElementById("chapterName");
+
+dropdown.innerHTML=
+'<option value="">Select Chapter</option>';
+
+if(!subject)return;
+
+chapters[subject].forEach(ch=>{
+
+let option=
+document.createElement("option");
+
+option.value=ch;
+
+option.textContent=ch;
+
+dropdown.appendChild(option);
+
+});
+
+}
+
+
+/* =========================
+   SAVE CHAPTER
+========================= */
+
+function saveChapter(){
+
+let subject=
+document.getElementById("chapterSubject").value;
+
+let chapter=
+document.getElementById("chapterName").value;
+
+let status=
+document.getElementById("chapterStatus").value;
+
+if(!subject||!chapter){
+
+alert("Subject aur chapter select karo.");
+
+return;
+
+}
+
+if(!data.chapterProgress[subject]){
+data.chapterProgress[subject]={};
+}
+
+data.chapterProgress[subject][chapter]=status;
+
+data.xp+=5;
+
+save();
+
+alert("✅ Chapter status saved!");
+
+}
+
+
+/* =========================
+   SHOW CHAPTERS
+========================= */
+
+function showChapters(){
+
+let box=
+document.getElementById("allChapters");
+
+box.innerHTML="";
+
+Object.keys(chapters).forEach(subject=>{
+
+let html=
+`<div class="subject">
+<h3>${subject}</h3>`;
+
+chapters[subject].forEach(ch=>{
+
+let status=
+data.chapterProgress?.[subject]?.[ch]
+||
+"Not Started";
+
+html+=`
+
+<div class="chapter-row">
+
+<span>${ch}</span>
+
+<span class="badge">
+${status}
+</span>
+
+</div>
+
+`;
+
+});
+
+html+="</div>";
+
+box.innerHTML+=html;
+
+});
+
+}
+
+
+/* =========================
+   QUESTIONS
 ========================= */
 
 function saveQuestions(){
 
-data.questions.attempted =
-+document.getElementById("attempted").value || 0;
+data.questions.attempted=
+Number(document.getElementById("attempted").value)||0;
 
-data.questions.correct =
-+document.getElementById("correct").value || 0;
+data.questions.correct=
+Number(document.getElementById("correct").value)||0;
 
-data.questions.wrong =
-+document.getElementById("wrong").value || 0;
+data.questions.wrong=
+Number(document.getElementById("wrong").value)||0;
 
 data.xp+=
 Math.min(
@@ -389,13 +931,19 @@ save();
 
 function addRevision(){
 
-let chapter =
+let chapter=
 document.getElementById("revisionChapter").value;
 
-let date =
+let date=
 document.getElementById("revisionDate").value;
 
-if(!chapter || !date)return;
+if(!chapter||!date){
+
+alert("Chapter aur date select karo.");
+
+return;
+
+}
 
 data.revisions.push({
 chapter:chapter,
@@ -415,26 +963,30 @@ save();
 
 function makePlan(){
 
-let hours =
-+document.getElementById("studyHours").value || 6;
+let hours=
+Number(
+document.getElementById("studyHours").value
+)||6;
 
-let questions =
-+document.getElementById("plannerQuestions").value || 60;
+let questions=
+Number(
+document.getElementById("plannerQuestions").value
+)||60;
 
-let lecture =
-Math.round(hours*.5*10)/10;
+let lecture=
+(hours*.5).toFixed(1);
 
-let revision =
-Math.round(hours*.25*10)/10;
+let revision=
+(hours*.25).toFixed(1);
 
-let practice =
-Math.round(hours*.25*10)/10;
+let practice=
+(hours*.25).toFixed(1);
 
 document.getElementById("plan").innerHTML=`
 
-<div class="subject">
+<div class="plan-box">
 
-<h3>📅 Today's Smart Plan</h3>
+<h3>📅 Today's Plan</h3>
 
 <p>🎥 Lectures:
 <b>${lecture} hours</b>
@@ -448,7 +1000,7 @@ document.getElementById("plan").innerHTML=`
 <b>${practice} hours</b>
 </p>
 
-<p>🎯 Questions:
+<p>🎯 Question Target:
 <b>${questions}</b>
 </p>
 
@@ -464,23 +1016,25 @@ document.getElementById("plan").innerHTML=`
 ========================= */
 
 let timerSeconds=1500;
+
 let timerInterval=null;
+
 
 function showTimer(){
 
-let m=
+let minutes=
 Math.floor(timerSeconds/60);
 
-let s=
+let seconds=
 timerSeconds%60;
 
 document.getElementById("timer").innerText=
 
-String(m).padStart(2,"0")
+String(minutes).padStart(2,"0")
 +
 ":"
 +
-String(s).padStart(2,"0");
+String(seconds).padStart(2,"0");
 
 }
 
@@ -489,7 +1043,8 @@ function startTimer(){
 
 if(timerInterval)return;
 
-timerInterval=setInterval(()=>{
+timerInterval=
+setInterval(()=>{
 
 if(timerSeconds>0){
 
@@ -507,9 +1062,7 @@ data.xp+=25;
 
 save();
 
-alert(
-"🔥 Focus session complete! +25 XP"
-);
+alert("🔥 Focus session complete! +25 XP");
 
 }
 
@@ -562,20 +1115,24 @@ save();
 
 function exportData(){
 
-let blob =
+let blob=
 new Blob(
-[JSON.stringify(data,null,2)],
-{type:"application/json"}
+[
+JSON.stringify(data,null,2)
+],
+{
+type:"application/json"
+}
 );
 
-let a =
+let a=
 document.createElement("a");
 
 a.href=
 URL.createObjectURL(blob);
 
 a.download=
-"jee-backup.json";
+"JEE-Command-Center-Backup.json";
 
 a.click();
 
@@ -609,21 +1166,20 @@ reader.onload=function(){
 try{
 
 data=
-JSON.parse(
-reader.result
+JSON.parse(reader.result);
+
+localStorage.setItem(
+"jeeCommandCenter",
+JSON.stringify(data)
 );
 
-save();
+updateUI();
 
-alert(
-"✅ Backup imported!"
-);
+alert("✅ Backup imported!");
 
 }catch{
 
-alert(
-"❌ Invalid backup file"
-);
+alert("❌ Invalid backup file.");
 
 }
 
@@ -631,12 +1187,11 @@ alert(
 
 reader.readAsText(file);
 
-}
-);
+});
 
 
 /* =========================
-   MAIN UI
+   UPDATE UI
 ========================= */
 
 function updateUI(){
@@ -750,7 +1305,6 @@ Math.min(data.streak*2,20)
 readiness=
 Math.min(100,readiness);
 
-
 document.getElementById("readiness").innerText=
 readiness;
 
@@ -760,14 +1314,14 @@ readiness+"%";
 
 /* REVISIONS */
 
-let rev=
+let revisionBox=
 document.getElementById("revisionList");
 
-rev.innerHTML="";
+revisionBox.innerHTML="";
 
 data.revisions.forEach(r=>{
 
-rev.innerHTML+=`
+revisionBox.innerHTML+=`
 
 <div class="subject">
 
@@ -775,8 +1329,9 @@ rev.innerHTML+=`
 
 <br>
 
-Next Revision:
-${r.date}
+<span class="small">
+Next Revision: ${r.date}
+</span>
 
 </div>
 
@@ -795,6 +1350,9 @@ achievements.push("🔥 7 Day Streak");
 if(data.questions.attempted>=100)
 achievements.push("📝 100 Questions");
 
+if(data.questions.attempted>=500)
+achievements.push("💪 500 Questions");
+
 if(data.xp>=500)
 achievements.push("🏆 500 XP");
 
@@ -806,14 +1364,16 @@ data.subjects.math>=50
 achievements.push("📚 50% Syllabus");
 
 
-if(!achievements.length)
+if(achievements.length===0){
+
 achievements.push(
 "🎯 Keep studying to unlock achievements!"
 );
 
+}
+
 
 document.getElementById("achievements").innerHTML=
-
 achievements
 .map(
 x=>`<span class="badge">${x}</span>`
@@ -833,7 +1393,7 @@ showChapters();
 
 
 /* =========================
-   START
+   START APP
 ========================= */
 
 updateUI();
@@ -841,3 +1401,6 @@ updateUI();
 showTimer();
 
 </script>
+
+</body>
+</html>
