@@ -13,10 +13,10 @@
 }
 
 body{
-  font-family:Arial, sans-serif;
+  font-family:Arial,sans-serif;
   background:#f4f7fb;
   color:#172033;
-  transition:.3s;
+  transition:.25s;
 }
 
 body.dark{
@@ -27,7 +27,7 @@ body.dark{
 header{
   background:linear-gradient(135deg,#2563eb,#7c3aed);
   color:white;
-  padding:30px 15px;
+  padding:30px 16px;
   text-align:center;
 }
 
@@ -37,16 +37,16 @@ header h1{
 }
 
 .container{
-  max-width:1100px;
+  max-width:1150px;
   margin:auto;
-  padding:20px;
+  padding:18px;
 }
 
 .card{
   background:white;
   border-radius:16px;
   padding:20px;
-  margin-bottom:20px;
+  margin-bottom:18px;
   box-shadow:0 5px 20px #00000012;
 }
 
@@ -54,162 +54,10 @@ header h1{
   background:#172033;
 }
 
-h2{
-  margin-bottom:15px;
-}
-
-input,select,button{
-  font:inherit;
-}
-
-input[type="text"]{
-  width:100%;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  margin-bottom:15px;
-}
-
-.dark input[type="text"]{
-  background:#0d1422;
-  color:white;
-  border-color:#334155;
-}
-
-.subject{
-  margin-top:25px;
-}
-
-.subject-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
-}
-
-.progress{
-  height:10px;
-  background:#e5e7eb;
-  border-radius:20px;
-  overflow:hidden;
-  margin-bottom:15px;
-}
-
-.progress-bar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#2563eb,#7c3aed);
-  transition:.3s;
-}
-
-.chapter{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px;
-  border:1px solid #e5e7eb;
-  border-radius:10px;
-  margin:7px 0;
-  transition:.2s;
-}
-
-.dark .chapter{
-  border-color:#334155;
-}
-
-.chapter:hover{
-  transform:translateX(3px);
-}
-
-.chapter input{
-  width:18px;
-  height:18px;
-}
-
-.chapter-name{
-  flex:1;
-  font-weight:600;
-}
-
-.status{
-  padding:7px 8px;
-  border-radius:8px;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.status.not-started{
-  background:#fee2e2;
-  color:#b91c1c;
-}
-
-.status.learning{
-  background:#fef3c7;
-  color:#92400e;
-}
-
-.status.strong{
-  background:#dcfce7;
-  color:#166534;
-}
-
-.bulk{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-bottom:15px;
-}
-
-.bulk button{
-  border:none;
-  padding:10px 14px;
-  border-radius:9px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.btn-red{
-  background:#fee2e2;
-  color:#b91c1c;
-}
-
-.btn-yellow{
-  background:#fef3c7;
-  color:#92400e;
-}
-
-.btn-green{
-  background:#dcfce7;
-  color:#166534;
-}
-
-.btn-blue{
-  background:#dbeafe;
-  color:#1d4ed8;
-}
-
-.topbar{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:15px;
-}
-
-.topbar button{
-  padding:10px 15px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  background:#2563eb;
-  color:white;
-  font-weight:bold;
-}
-
-.stats{
+.grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:15px;
+  gap:14px;
 }
 
 .stat{
@@ -223,9 +71,9 @@ input[type="text"]{
 }
 
 .stat h3{
-  font-size:14px;
+  font-size:13px;
   opacity:.7;
-  margin-bottom:8px;
+  margin-bottom:7px;
 }
 
 .stat p{
@@ -233,17 +81,257 @@ input[type="text"]{
   font-weight:bold;
 }
 
-.hidden{
-  display:none;
+button{
+  border:0;
+  border-radius:10px;
+  padding:10px 14px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+input,select{
+  font:inherit;
+  padding:10px;
+  border:1px solid #d7dce5;
+  border-radius:9px;
+}
+
+.dark input,
+.dark select{
+  background:#0d1422;
+  color:#fff;
+  border-color:#334155;
+}
+
+.full{
+  width:100%;
+}
+
+.progress{
+  height:10px;
+  background:#e5e7eb;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:8px;
+}
+
+.progress-bar{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,#2563eb,#7c3aed);
+  transition:.3s;
+}
+
+.row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.space{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.blue{
+  background:#2563eb;
+  color:white;
+}
+
+.purple{
+  background:#7c3aed;
+  color:white;
+}
+
+.green{
+  background:#16a34a;
+  color:white;
+}
+
+.orange{
+  background:#f59e0b;
+  color:white;
+}
+
+.red{
+  background:#dc2626;
+  color:white;
+}
+
+.gray{
+  background:#64748b;
+  color:white;
+}
+
+h2{
+  margin-bottom:14px;
+}
+
+h3{
+  margin-bottom:8px;
+}
+
+.small{
+  font-size:13px;
+  opacity:.7;
+}
+
+/* ================= CHAPTER TRACKER ================= */
+
+.subject{
+  margin-top:25px;
+}
+
+.chapter{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px;
+  margin:7px 0;
+  border:1px solid #e2e8f0;
+  border-radius:11px;
+  transition:.2s;
+}
+
+.dark .chapter{
+  border-color:#334155;
+}
+
+.chapter:hover{
+  transform:translateX(2px);
+}
+
+.chapter input[type="checkbox"]{
+  width:18px;
+  height:18px;
+  cursor:pointer;
+}
+
+.chapter-name{
+  flex:1;
+  font-weight:600;
+}
+
+.status{
+  min-width:145px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.status.ns{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.status.learn{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.status.strong{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.status.completed{
+  background:#dbeafe;
+  color:#1d4ed8;
+}
+
+.bulk{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:12px 0;
+}
+
+.bulk button{
+  font-size:13px;
+}
+
+.search{
+  width:100%;
+  margin:10px 0;
+}
+
+.chapter-count{
+  font-size:13px;
+  opacity:.7;
+}
+
+/* ================= TIMER ================= */
+
+.timer{
+  font-size:48px;
+  text-align:center;
+  font-weight:bold;
+  margin:15px;
+}
+
+.timerBtns{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+/* ================= TASKS ================= */
+
+.task{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:10px;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.dark .task{
+  border-color:#334155;
+}
+
+.task input{
+  width:18px;
+  height:18px;
+}
+
+/* ================= PLANNER ================= */
+
+.plan{
+  padding:12px;
+  border-radius:10px;
+  background:#f1f5f9;
+  margin:8px 0;
+}
+
+.dark .plan{
+  background:#202b40;
+}
+
+textarea{
+  width:100%;
+  min-height:90px;
+  padding:10px;
+  border:1px solid #d7dce5;
+  border-radius:10px;
+  resize:vertical;
 }
 
 @media(max-width:600px){
-  .container{
-    padding:12px;
-  }
 
   header h1{
     font-size:24px;
+  }
+
+  .container{
+    padding:10px;
+  }
+
+  .card{
+    padding:15px;
   }
 
   .chapter{
@@ -251,7 +339,12 @@ input[type="text"]{
   }
 
   .status{
+    min-width:115px;
     font-size:12px;
+  }
+
+  .timer{
+    font-size:40px;
   }
 }
 </style>
@@ -260,80 +353,586 @@ input[type="text"]{
 <body>
 
 <header>
-  <h1>🚀 JEE 2028 Command Center</h1>
-  <p>Track your JEE preparation chapter by chapter</p>
+<h1>🚀 JEE 2028 COMMAND CENTER</h1>
+<p>Your preparation. Your target. Your progress.</p>
 </header>
 
 <div class="container">
 
-  <div class="topbar">
-    <button onclick="toggleDark()">🌙 Dark Mode</button>
-    <button onclick="selectAllVisible()">☑️ Select All</button>
-    <button onclick="clearSelection()">❌ Clear Selection</button>
-  </div>
+<!-- TOP BUTTONS -->
 
-  <div class="card">
-    <h2>📊 Overall Progress</h2>
+<div class="card">
+<div class="row">
 
-    <div class="stats">
-      <div class="stat">
-        <h3>Total Chapters</h3>
-        <p id="total">0</p>
-      </div>
+<button class="blue" onclick="toggleDark()">
+🌙 Dark Mode
+</button>
 
-      <div class="stat">
-        <h3>Not Started</h3>
-        <p id="notStarted">0</p>
-      </div>
+<button class="purple" onclick="exportData()">
+⬇️ Backup
+</button>
 
-      <div class="stat">
-        <h3>Learning</h3>
-        <p id="learning">0</p>
-      </div>
+<button class="gray" onclick="importData()">
+⬆️ Restore
+</button>
 
-      <div class="stat">
-        <h3>Strong</h3>
-        <p id="strong">0</p>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
 
-  <div class="card">
-    <h2>📚 Chapter Tracker</h2>
 
-    <input
-      type="text"
-      id="search"
-      placeholder="🔎 Search chapter..."
-      oninput="renderChapters()"
-    >
+<!-- TARGET -->
 
-    <div class="bulk">
-      <button class="btn-red" onclick="bulkStatus('Not Started')">
-        🔴 Set Not Started
-      </button>
+<div class="card">
 
-      <button class="btn-yellow" onclick="bulkStatus('Learning')">
-        🟡 Set Learning
-      </button>
+<h2>🎯 JEE Target</h2>
 
-      <button class="btn-green" onclick="bulkStatus('Strong')">
-        🟢 Set Strong
-      </button>
-    </div>
+<div class="row">
 
-    <p style="margin-bottom:15px;">
-      Selected: <b id="selectedCount">0</b>
-    </p>
+<input
+id="targetInput"
+type="text"
+placeholder="Enter your target e.g. IIT Bombay CSE"
+style="flex:1"
+>
 
-    <div id="chapters"></div>
-  </div>
+<button class="blue" onclick="saveTarget()">
+Save Target
+</button>
 
 </div>
 
+<p
+id="targetShow"
+style="margin-top:12px;font-weight:bold"
+></p>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div class="card">
+
+<h2>📊 Dashboard</h2>
+
+<div class="grid">
+
+<div class="stat">
+<h3>🔥 Study Streak</h3>
+<p id="streak">0 days</p>
+</div>
+
+<div class="stat">
+<h3>⭐ XP</h3>
+<p id="xp">0</p>
+</div>
+
+<div class="stat">
+<h3>🏆 Level</h3>
+<p id="level">1</p>
+</div>
+
+<div class="stat">
+<h3>🎯 JEE Readiness</h3>
+<p id="readiness">0%</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STREAK -->
+
+<div class="card">
+
+<div class="space">
+
+<div>
+<h2>🔥 Study Streak</h2>
+<p class="small">
+Study every day to continue your streak.
+</p>
+</div>
+
+<button class="green" onclick="markStudy()">
+✅ Mark Today Studied
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SUBJECT PROGRESS -->
+
+<div class="card">
+
+<h2>📚 Subject Progress</h2>
+
+<div>
+
+<div class="space">
+<b>Physics</b>
+<span id="phyP">0%</span>
+</div>
+
+<div class="progress">
+<div id="phyBar" class="progress-bar"></div>
+</div>
+
+</div>
+
+<br>
+
+<div>
+
+<div class="space">
+<b>Chemistry</b>
+<span id="chemP">0%</span>
+</div>
+
+<div class="progress">
+<div id="chemBar" class="progress-bar"></div>
+</div>
+
+</div>
+
+<br>
+
+<div>
+
+<div class="space">
+<b>Mathematics</b>
+<span id="mathP">0%</span>
+</div>
+
+<div class="progress">
+<div id="mathBar" class="progress-bar"></div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CHAPTER TRACKER -->
+
+<div class="card">
+
+<div class="space">
+
+<div>
+
+<h2>📖 Chapter Tracker</h2>
+
+<p class="small">
+🔴 Not Started &nbsp;
+🟡 Learning &nbsp;
+🟢 Strong &nbsp;
+🔵 Completed
+</p>
+
+</div>
+
+<div>
+<b>
+Selected:
+<span id="selectedCount">0</span>
+</b>
+</div>
+
+</div>
+
+
+<input
+id="chapterSearch"
+class="search"
+placeholder="🔎 Search chapter..."
+oninput="renderChapters()"
+>
+
+
+<div class="bulk">
+
+<button
+class="red"
+onclick="bulkStatus('Not Started')"
+>
+🔴 Not Started
+</button>
+
+<button
+class="orange"
+onclick="bulkStatus('Learning')"
+>
+🟡 Learning
+</button>
+
+<button
+class="green"
+onclick="bulkStatus('Strong')"
+>
+🟢 Strong
+</button>
+
+<button
+class="blue"
+onclick="bulkStatus('Completed')"
+>
+🔵 Completed
+</button>
+
+<button
+class="blue"
+onclick="selectVisible()"
+>
+☑️ Select All Visible
+</button>
+
+<button
+class="gray"
+onclick="clearSelected()"
+>
+✖ Clear Selection
+</button>
+
+</div>
+
+
+<div id="chapterBox"></div>
+
+</div>
+
+
+<!-- BACKLOG -->
+
+<div class="card">
+
+<h2>📚 Backlog Tracker</h2>
+
+<div class="grid">
+
+<div>
+<h3>Physics</h3>
+<input
+id="phyBacklog"
+type="number"
+class="full"
+placeholder="Remaining lectures"
+>
+</div>
+
+<div>
+<h3>Chemistry</h3>
+<input
+id="chemBacklog"
+type="number"
+class="full"
+placeholder="Remaining lectures"
+>
+</div>
+
+<div>
+<h3>Mathematics</h3>
+<input
+id="mathBacklog"
+type="number"
+class="full"
+placeholder="Remaining lectures"
+>
+</div>
+
+</div>
+
+<br>
+
+<button
+class="blue"
+onclick="saveBacklog()"
+>
+Save Backlog
+</button>
+
+<p
+id="backlogShow"
+style="margin-top:12px"
+></p>
+
+</div>
+
+
+<!-- QUESTIONS -->
+
+<div class="card">
+
+<h2>📝 Question Tracker</h2>
+
+<div class="grid">
+
+<div>
+<h3>Questions Solved</h3>
+<input
+id="qSolved"
+type="number"
+class="full"
+>
+</div>
+
+<div>
+<h3>Correct</h3>
+<input
+id="qCorrect"
+type="number"
+class="full"
+>
+</div>
+
+<div>
+<h3>Wrong</h3>
+<input
+id="qWrong"
+type="number"
+class="full"
+>
+</div>
+
+</div>
+
+<br>
+
+<button
+class="blue"
+onclick="saveQuestions()"
+>
+Save Questions
+</button>
+
+<p
+id="accuracy"
+style="margin-top:12px;font-weight:bold"
+>
+Accuracy: 0%
+</p>
+
+</div>
+
+
+<!-- FOCUS TIMER -->
+
+<div class="card">
+
+<h2>⏱️ Focus Timer</h2>
+
+<div id="timer" class="timer">
+25:00
+</div>
+
+<div class="timerBtns">
+
+<button
+class="green"
+onclick="startTimer()"
+>
+▶ Start
+</button>
+
+<button
+class="orange"
+onclick="pauseTimer()"
+>
+⏸ Pause
+</button>
+
+<button
+class="red"
+onclick="resetTimer()"
+>
+↻ Reset
+</button>
+
+<button
+class="blue"
+onclick="setTimer(25)"
+>
+25 Min
+</button>
+
+<button
+class="purple"
+onclick="setTimer(50)"
+>
+50 Min
+</button>
+
+</div>
+
+</div>
+
+
+<!-- REVISION -->
+
+<div class="card">
+
+<h2>🔁 Revision Tracker</h2>
+
+<div class="row">
+
+<input
+id="revisionInput"
+type="text"
+placeholder="Chapter revised today..."
+style="flex:1"
+>
+
+<button
+class="green"
+onclick="addRevision()"
+>
+Add Revision
+</button>
+
+</div>
+
+<div
+id="revisionList"
+style="margin-top:12px"
+></div>
+
+</div>
+
+
+<!-- SMART PLANNER -->
+
+<div class="card">
+
+<h2>🧠 Smart Study Planner</h2>
+
+<div class="grid">
+
+<div>
+<h3>Lectures Today</h3>
+<input
+id="planLectures"
+type="number"
+class="full"
+value="3"
+>
+</div>
+
+<div>
+<h3>Revision Hours</h3>
+<input
+id="planRevision"
+type="number"
+class="full"
+value="1.5"
+>
+</div>
+
+<div>
+<h3>Question Practice</h3>
+<input
+id="planQuestions"
+type="number"
+class="full"
+value="50"
+>
+</div>
+
+</div>
+
+<br>
+
+<button
+class="purple"
+onclick="makePlan()"
+>
+Generate Plan
+</button>
+
+<div
+id="planBox"
+style="margin-top:12px"
+></div>
+
+</div>
+
+
+<!-- DAILY TASKS -->
+
+<div class="card">
+
+<h2>✅ Today's Tasks</h2>
+
+<div class="row">
+
+<input
+id="taskInput"
+type="text"
+placeholder="Add task..."
+style="flex:1"
+>
+
+<button
+class="blue"
+onclick="addTask()"
+>
+Add
+</button>
+
+</div>
+
+<div
+id="taskList"
+style="margin-top:10px"
+></div>
+
+</div>
+
+
+<!-- ACHIEVEMENTS -->
+
+<div class="card">
+
+<h2>🏆 Achievements</h2>
+
+<div class="grid">
+
+<div class="stat">
+<h3>🔥 7 Day Streak</h3>
+<p id="ach7">🔒</p>
+</div>
+
+<div class="stat">
+<h3>⭐ 500 XP</h3>
+<p id="achXP">🔒</p>
+</div>
+
+<div class="stat">
+<h3>📚 10 Strong Chapters</h3>
+<p id="achCh">🔒</p>
+</div>
+
+<div class="stat">
+<h3>🔵 10 Completed</h3>
+<p id="achComplete">🔒</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
 <script>
 
-const subjects = {
+/* =========================
+   CHAPTERS
+========================= */
+
+const chapters={
 
 Physics:[
 "Units and Measurements",
@@ -350,22 +949,22 @@ Physics:[
 "Kinetic Theory",
 "Oscillations",
 "Waves",
-"Properties of Bulk Matter"
+"Physical World"
 ],
 
 Chemistry:[
 "Some Basic Concepts of Chemistry",
 "Structure of Atom",
 "Classification of Elements",
-"Chemical Bonding",
+"Chemical Bonding and Molecular Structure",
 "Thermodynamics",
 "Equilibrium",
 "Redox Reactions",
 "Organic Chemistry – Basic Principles",
 "Hydrocarbons",
 "States of Matter",
-"Periodic Table",
 "Hydrogen",
+"The s-Block Elements",
 "Environmental Chemistry"
 ],
 
@@ -380,7 +979,7 @@ Mathematics:[
 "Sequences and Series",
 "Straight Lines",
 "Conic Sections",
-"Introduction to Three Dimensional Geometry",
+"Introduction to 3D Geometry",
 "Limits and Derivatives",
 "Statistics",
 "Probability"
@@ -390,28 +989,44 @@ Mathematics:[
 
 
 /* =========================
-   LOAD SAVED DATA
+   DATA
 ========================= */
 
-let saved = localStorage.getItem("jeeChapterTracker");
+let data=JSON.parse(
+localStorage.getItem("jee2028Data") || "{}"
+);
 
-let data = saved ? JSON.parse(saved) : {};
+if(!data.status)
+data.status={};
 
-for(const subject in subjects){
+for(const subject in chapters){
 
-  if(!data[subject]){
-    data[subject] = {};
-  }
+if(!data.status[subject])
+data.status[subject]={};
 
-  subjects[subject].forEach(chapter => {
+chapters[subject].forEach(chapter=>{
 
-    if(!data[subject][chapter]){
-      data[subject][chapter] = "Not Started";
-    }
+if(!data.status[subject][chapter])
+data.status[subject][chapter]="Not Started";
 
-  });
+});
 
 }
+
+if(!data.selected)
+data.selected=[];
+
+if(!data.revisions)
+data.revisions=[];
+
+if(!data.tasks)
+data.tasks=[];
+
+if(!data.streak)
+data.streak=0;
+
+if(!data.xp)
+data.xp=0;
 
 
 /* =========================
@@ -420,168 +1035,302 @@ for(const subject in subjects){
 
 function save(){
 
-  localStorage.setItem(
-    "jeeChapterTracker",
-    JSON.stringify(data)
-  );
+localStorage.setItem(
+"jee2028Data",
+JSON.stringify(data)
+);
 
 }
 
 
 /* =========================
-   SELECTED CHAPTERS
-========================= */
-
-let selected = new Set();
-
-
-/* =========================
-   RENDER
+   CHAPTER RENDER
 ========================= */
 
 function renderChapters(){
 
-  const box = document.getElementById("chapters");
+const box=document.getElementById("chapterBox");
 
-  const search =
-    document.getElementById("search").value.toLowerCase();
+const search=
+document.getElementById("chapterSearch")
+.value
+.toLowerCase();
 
-  box.innerHTML = "";
+box.innerHTML="";
 
-  for(const subject in subjects){
+for(const subject in chapters){
 
-    const filtered = subjects[subject].filter(chapter =>
-      chapter.toLowerCase().includes(search)
-    );
+const filtered=chapters[subject].filter(chapter=>
+chapter.toLowerCase().includes(search)
+);
 
-    if(filtered.length === 0) continue;
+if(filtered.length===0)
+continue;
 
-    const section = document.createElement("div");
+let completed=0;
+let strong=0;
+let learning=0;
 
-    section.className = "subject";
+chapters[subject].forEach(chapter=>{
 
-    let html = `
-      <div class="subject-title">
-        <h2>${subject}</h2>
-        <span id="${subject}Percent">0%</span>
-      </div>
+let s=data.status[subject][chapter];
 
-      <div class="progress">
-        <div
-          class="progress-bar"
-          id="${subject}Bar">
-        </div>
-      </div>
-    `;
+if(s==="Completed")
+completed++;
 
-    filtered.forEach(chapter => {
+if(s==="Strong")
+strong++;
 
-      const status = data[subject][chapter];
+if(s==="Learning")
+learning++;
 
-      const id =
-        subject + "_" +
-        chapter.replace(/[^a-zA-Z0-9]/g,"_");
+});
 
-      html += `
 
-        <div class="chapter">
+let total=chapters[subject].length;
 
-          <input
-            type="checkbox"
-            class="chapterCheck"
-            data-subject="${escapeAttr(subject)}"
-            data-chapter="${escapeAttr(chapter)}"
-            ${selected.has(subject+"|||"+chapter) ? "checked" : ""}
-            onchange="toggleSelect(
-              '${escapeJS(subject)}',
-              '${escapeJS(chapter)}'
-            )"
-          >
+let progress=Math.round(
+completed/total*100
+);
 
-          <span class="chapter-name">
-            ${chapter}
-          </span>
 
-          <select
-            class="status ${statusClass(status)}"
-            onchange="
-              changeStatus(
-                '${escapeJS(subject)}',
-                '${escapeJS(chapter)}',
-                this.value
-              )
-            "
-          >
+const section=document.createElement("div");
+section.className="subject";
 
-            <option value="Not Started"
-              ${status==="Not Started"?"selected":""}>
-              🔴 Not Started
-            </option>
+section.innerHTML=`
 
-            <option value="Learning"
-              ${status==="Learning"?"selected":""}>
-              🟡 Learning
-            </option>
+<div class="space">
 
-            <option value="Strong"
-              ${status==="Strong"?"selected":""}>
-              🟢 Strong
-            </option>
+<h2>${subject}</h2>
 
-          </select>
+<span class="chapter-count">
+${completed}/${total} Completed
+</span>
 
-        </div>
-      `;
+</div>
 
-    });
+<div class="progress">
 
-    section.innerHTML = html;
+<div
+class="progress-bar"
+style="width:${progress}%"
+></div>
 
-    box.appendChild(section);
+</div>
 
-    updateSubjectProgress(subject);
+`;
 
-  }
+filtered.forEach(chapter=>{
 
-  updateStats();
+const key=
+subject+"|||"+chapter;
 
-  document.getElementById("selectedCount").innerText =
-    selected.size;
+const status=
+data.status[subject][chapter];
+
+const row=
+document.createElement("div");
+
+row.className="chapter";
+
+
+/* checkbox */
+
+const checkbox=
+document.createElement("input");
+
+checkbox.type="checkbox";
+
+checkbox.checked=
+data.selected.includes(key);
+
+checkbox.onchange=()=>{
+
+if(checkbox.checked){
+
+if(!data.selected.includes(key))
+data.selected.push(key);
+
+}else{
+
+data.selected=
+data.selected.filter(x=>x!==key);
+
+}
+
+save();
+updateSelected();
+
+};
+
+
+/* name */
+
+const name=
+document.createElement("span");
+
+name.className="chapter-name";
+
+name.textContent=chapter;
+
+
+/* status dropdown */
+
+const select=
+document.createElement("select");
+
+select.className=
+"status "+
+getStatusClass(status);
+
+
+const statuses=[
+"Not Started",
+"Learning",
+"Strong",
+"Completed"
+];
+
+
+statuses.forEach(s=>{
+
+const option=
+document.createElement("option");
+
+option.value=s;
+
+option.textContent=
+s==="Not Started"
+?"🔴 Not Started":
+s==="Learning"
+?"🟡 Learning":
+s==="Strong"
+?"🟢 Strong":
+"🔵 Completed";
+
+if(s===status)
+option.selected=true;
+
+select.appendChild(option);
+
+});
+
+
+select.onchange=()=>{
+
+data.status[subject][chapter]=
+select.value;
+
+save();
+
+addXP(2);
+
+renderChapters();
+updateDashboard();
+
+};
+
+
+row.append(
+checkbox,
+name,
+select
+);
+
+section.appendChild(row);
+
+});
+
+
+box.appendChild(section);
+
+}
+
+updateSelected();
 
 }
 
 
 /* =========================
-   CHANGE STATUS
+   STATUS CLASS
 ========================= */
 
-function changeStatus(subject,chapter,status){
+function getStatusClass(status){
 
-  data[subject][chapter] = status;
+if(status==="Learning")
+return "learn";
 
-  save();
+if(status==="Strong")
+return "strong";
 
-  renderChapters();
+if(status==="Completed")
+return "completed";
+
+return "ns";
 
 }
 
 
 /* =========================
-   MULTIPLE SELECT
+   SELECTED COUNT
 ========================= */
 
-function toggleSelect(subject,chapter){
+function updateSelected(){
 
-  const key = subject + "|||" + chapter;
+document.getElementById(
+"selectedCount"
+).textContent=
+data.selected.length;
 
-  if(selected.has(key)){
-    selected.delete(key);
-  }else{
-    selected.add(key);
-  }
+}
 
-  document.getElementById("selectedCount").innerText =
-    selected.size;
+
+/* =========================
+   SELECT ALL VISIBLE
+========================= */
+
+function selectVisible(){
+
+const search=
+document.getElementById("chapterSearch")
+.value
+.toLowerCase();
+
+for(const subject in chapters){
+
+chapters[subject].forEach(chapter=>{
+
+if(chapter.toLowerCase().includes(search)){
+
+const key=
+subject+"|||"+chapter;
+
+if(!data.selected.includes(key))
+data.selected.push(key);
+
+}
+
+});
+
+}
+
+save();
+renderChapters();
+
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearSelected(){
+
+data.selected=[];
+
+save();
+
+renderChapters();
 
 }
 
@@ -592,75 +1341,143 @@ function toggleSelect(subject,chapter){
 
 function bulkStatus(status){
 
-  if(selected.size === 0){
+if(data.selected.length===0){
 
-    alert("Pehle chapters select karo bhai 😄");
+alert(
+"Pehle chapters ke checkbox tick karo bhai 😄"
+);
 
-    return;
+return;
 
-  }
+}
 
-  selected.forEach(key => {
 
-    const parts = key.split("|||");
+data.selected.forEach(key=>{
 
-    const subject = parts[0];
-    const chapter = parts.slice(1).join("|||");
+const parts=key.split("|||");
 
-    if(data[subject] && data[subject][chapter]){
+const subject=parts[0];
 
-      data[subject][chapter] = status;
+const chapter=
+parts.slice(1).join("|||");
 
-    }
+if(
+data.status[subject] &&
+data.status[subject][chapter]!==undefined
+){
 
-  });
+data.status[subject][chapter]=status;
 
-  save();
+}
 
-  selected.clear();
+});
 
-  renderChapters();
+
+data.selected=[];
+
+save();
+
+renderChapters();
+
+updateDashboard();
+
+addXP(5);
 
 }
 
 
 /* =========================
-   SELECT ALL
+   DASHBOARD
 ========================= */
 
-function selectAllVisible(){
+function updateDashboard(){
 
-  const search =
-    document.getElementById("search").value.toLowerCase();
+let total=0;
+let completed=0;
+let strong=0;
 
-  for(const subject in subjects){
+for(const subject in chapters){
 
-    subjects[subject].forEach(chapter => {
+chapters[subject].forEach(chapter=>{
 
-      if(chapter.toLowerCase().includes(search)){
+total++;
 
-        selected.add(subject+"|||"+chapter);
+const status=
+data.status[subject][chapter];
 
-      }
+if(status==="Completed")
+completed++;
 
-    });
+if(status==="Strong")
+strong++;
 
-  }
-
-  renderChapters();
+});
 
 }
 
 
-/* =========================
-   CLEAR SELECTION
-========================= */
+const readiness=
+Math.round(completed/total*100);
 
-function clearSelection(){
+document.getElementById("readiness")
+.textContent=
+readiness+"%";
 
-  selected.clear();
+document.getElementById("xp")
+.textContent=
+data.xp;
 
-  renderChapters();
+document.getElementById("level")
+.textContent=
+Math.floor(data.xp/100)+1;
+
+document.getElementById("streak")
+.textContent=
+data.streak+" days";
+
+
+document.getElementById("ach7")
+.textContent=
+data.streak>=7
+?"🏆 Unlocked"
+:"🔒";
+
+document.getElementById("achXP")
+.textContent=
+data.xp>=500
+?"🏆 Unlocked"
+:"🔒";
+
+document.getElementById("achCh")
+.textContent=
+strong>=10
+?"🏆 Unlocked"
+:"🔒";
+
+document.getElementById("achComplete")
+.textContent=
+completed>=10
+?"🏆 Unlocked"
+:"🔒";
+
+
+updateSubject(
+"Physics",
+"phyP",
+"phyBar"
+);
+
+updateSubject(
+"Chemistry",
+"chemP",
+"chemBar"
+);
+
+updateSubject(
+"Mathematics",
+"mathP",
+"mathBar"
+);
 
 }
 
@@ -669,102 +1486,577 @@ function clearSelection(){
    SUBJECT PROGRESS
 ========================= */
 
-function updateSubjectProgress(subject){
+function updateSubject(
+subject,
+textId,
+barId
+){
 
-  const total = subjects[subject].length;
+const total=
+chapters[subject].length;
 
-  let strong = 0;
+let completed=0;
 
-  subjects[subject].forEach(chapter => {
+chapters[subject].forEach(chapter=>{
 
-    if(data[subject][chapter] === "Strong"){
-      strong++;
-    }
+if(
+data.status[subject][chapter]
+==="Completed"
+)
+completed++;
 
-  });
+});
 
-  const percent =
-    total === 0 ? 0 :
-    Math.round((strong / total) * 100);
+const percent=
+Math.round(completed/total*100);
 
-  const bar =
-    document.getElementById(subject+"Bar");
+document.getElementById(textId)
+.textContent=
+percent+"%";
 
-  const text =
-    document.getElementById(subject+"Percent");
-
-  if(bar) bar.style.width = percent+"%";
-
-  if(text) text.innerText = percent+"% Strong";
-
-}
-
-
-/* =========================
-   OVERALL STATS
-========================= */
-
-function updateStats(){
-
-  let total = 0;
-  let notStarted = 0;
-  let learning = 0;
-  let strong = 0;
-
-  for(const subject in subjects){
-
-    subjects[subject].forEach(chapter => {
-
-      total++;
-
-      const status =
-        data[subject][chapter];
-
-      if(status === "Not Started"){
-        notStarted++;
-      }
-
-      if(status === "Learning"){
-        learning++;
-      }
-
-      if(status === "Strong"){
-        strong++;
-      }
-
-    });
-
-  }
-
-  document.getElementById("total").innerText = total;
-
-  document.getElementById("notStarted").innerText =
-    notStarted;
-
-  document.getElementById("learning").innerText =
-    learning;
-
-  document.getElementById("strong").innerText =
-    strong;
+document.getElementById(barId)
+.style.width=
+percent+"%";
 
 }
 
 
 /* =========================
-   STATUS CLASS
+   XP
 ========================= */
 
-function statusClass(status){
+function addXP(amount){
 
-  if(status === "Learning"){
-    return "learning";
-  }
+data.xp+=amount;
 
-  if(status === "Strong"){
-    return "strong";
-  }
+save();
 
-  return "not-started";
+updateDashboard();
+
+}
+
+
+/* =========================
+   TARGET
+========================= */
+
+function saveTarget(){
+
+const value=
+document.getElementById(
+"targetInput"
+).value.trim();
+
+if(!value)
+return;
+
+localStorage.setItem(
+"jeeTarget",
+value
+);
+
+document.getElementById(
+"targetShow"
+).textContent=
+"🎯 Target: "+value;
+
+addXP(10);
+
+}
+
+
+function loadTarget(){
+
+const value=
+localStorage.getItem("jeeTarget");
+
+if(value){
+
+document.getElementById(
+"targetInput"
+).value=value;
+
+document.getElementById(
+"targetShow"
+).textContent=
+"🎯 Target: "+value;
+
+}
+
+}
+
+
+/* =========================
+   STREAK
+========================= */
+
+function markStudy(){
+
+const today=
+new Date().toDateString();
+
+const last=
+localStorage.getItem("lastStudy");
+
+if(last===today){
+
+alert(
+"Aaj already marked hai bhai 🔥"
+);
+
+return;
+
+}
+
+const yesterday=
+new Date();
+
+yesterday.setDate(
+yesterday.getDate()-1
+);
+
+if(
+last===yesterday.toDateString()
+){
+
+data.streak++;
+
+}else{
+
+data.streak=1;
+
+}
+
+localStorage.setItem(
+"lastStudy",
+today
+);
+
+addXP(25);
+
+save();
+
+updateDashboard();
+
+alert(
+"🔥 Today's study marked!"
+);
+
+}
+
+
+/* =========================
+   BACKLOG
+========================= */
+
+function saveBacklog(){
+
+const p=
+document.getElementById(
+"phyBacklog"
+).value;
+
+const c=
+document.getElementById(
+"chemBacklog"
+).value;
+
+const m=
+document.getElementById(
+"mathBacklog"
+).value;
+
+data.backlog={p,c,m};
+
+save();
+
+document.getElementById(
+"backlogShow"
+).textContent=
+`Physics: ${p||0} | Chemistry: ${c||0} | Maths: ${m||0}`;
+
+addXP(5);
+
+}
+
+
+/* =========================
+   QUESTIONS
+========================= */
+
+function saveQuestions(){
+
+const solved=
+Number(
+document.getElementById(
+"qSolved"
+).value
+)||0;
+
+const correct=
+Number(
+document.getElementById(
+"qCorrect"
+).value
+)||0;
+
+const wrong=
+Number(
+document.getElementById(
+"qWrong"
+).value
+)||0;
+
+data.questions={
+solved,
+correct,
+wrong
+};
+
+const accuracy=
+solved
+?Math.round(correct/solved*100)
+:0;
+
+document.getElementById(
+"accuracy"
+).textContent=
+"Accuracy: "+accuracy+"%";
+
+save();
+
+addXP(10);
+
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+let timerSeconds=25*60;
+
+let timerInterval=null;
+
+
+function showTimer(){
+
+const minutes=
+Math.floor(timerSeconds/60);
+
+const seconds=
+timerSeconds%60;
+
+document.getElementById(
+"timer"
+).textContent=
+String(minutes).padStart(2,"0")
++
+":"
++
+String(seconds).padStart(2,"0");
+
+}
+
+
+function startTimer(){
+
+if(timerInterval)
+return;
+
+timerInterval=
+setInterval(()=>{
+
+if(timerSeconds>0){
+
+timerSeconds--;
+
+showTimer();
+
+}else{
+
+clearInterval(timerInterval);
+
+timerInterval=null;
+
+addXP(30);
+
+alert(
+"🎉 Focus session complete!"
+);
+
+}
+
+},1000);
+
+}
+
+
+function pauseTimer(){
+
+clearInterval(timerInterval);
+
+timerInterval=null;
+
+}
+
+
+function resetTimer(){
+
+pauseTimer();
+
+timerSeconds=25*60;
+
+showTimer();
+
+}
+
+
+function setTimer(minutes){
+
+pauseTimer();
+
+timerSeconds=
+minutes*60;
+
+showTimer();
+
+}
+
+
+/* =========================
+   REVISION
+========================= */
+
+function addRevision(){
+
+const value=
+document.getElementById(
+"revisionInput"
+).value.trim();
+
+if(!value)
+return;
+
+data.revisions.unshift({
+
+text:value,
+
+date:new Date()
+.toLocaleDateString()
+
+});
+
+document.getElementById(
+"revisionInput"
+).value="";
+
+save();
+
+renderRevisions();
+
+addXP(10);
+
+}
+
+
+function renderRevisions(){
+
+const box=
+document.getElementById(
+"revisionList"
+);
+
+box.innerHTML="";
+
+data.revisions.forEach(item=>{
+
+const div=
+document.createElement("div");
+
+div.className="plan";
+
+div.innerHTML=
+`🔁 <b>${item.text}</b>
+<span class="small">
+— ${item.date}
+</span>`;
+
+box.appendChild(div);
+
+});
+
+}
+
+
+/* =========================
+   SMART PLANNER
+========================= */
+
+function makePlan(){
+
+const lectures=
+Number(
+document.getElementById(
+"planLectures"
+).value
+)||3;
+
+const revision=
+Number(
+document.getElementById(
+"planRevision"
+).value
+)||1.5;
+
+const questions=
+Number(
+document.getElementById(
+"planQuestions"
+).value
+)||50;
+
+
+document.getElementById(
+"planBox"
+).innerHTML=`
+
+<div class="plan">
+🎥 <strong>Lectures:</strong>
+${lectures} × 2 hours
+</div>
+
+<div class="plan">
+🔁 <strong>Revision:</strong>
+${revision} hours
+</div>
+
+<div class="plan">
+📝 <strong>Questions:</strong>
+${questions}
+</div>
+
+<div class="plan">
+🔥 <strong>Goal:</strong>
+Finish today's targets consistently.
+</div>
+
+`;
+
+addXP(5);
+
+}
+
+
+/* =========================
+   DAILY TASKS
+========================= */
+
+function addTask(){
+
+const value=
+document.getElementById(
+"taskInput"
+).value.trim();
+
+if(!value)
+return;
+
+data.tasks.push({
+
+text:value,
+done:false
+
+});
+
+document.getElementById(
+"taskInput"
+).value="";
+
+save();
+
+renderTasks();
+
+}
+
+
+function renderTasks(){
+
+const box=
+document.getElementById(
+"taskList"
+);
+
+box.innerHTML="";
+
+data.tasks.forEach((task,index)=>{
+
+const div=
+document.createElement("div");
+
+div.className="task";
+
+
+const check=
+document.createElement("input");
+
+check.type="checkbox";
+
+check.checked=task.done;
+
+check.onchange=()=>{
+
+task.done=
+check.checked;
+
+if(task.done)
+addXP(5);
+
+save();
+
+renderTasks();
+
+};
+
+
+const text=
+document.createElement("span");
+
+text.textContent=
+task.text;
+
+if(task.done)
+text.style.textDecoration=
+"line-through";
+
+
+const deleteBtn=
+document.createElement("button");
+
+deleteBtn.textContent="❌";
+
+deleteBtn.className="red";
+
+deleteBtn.onclick=()=>{
+
+data.tasks.splice(index,1);
+
+save();
+
+renderTasks();
+
+};
+
+
+div.append(
+check,
+text,
+deleteBtn
+);
+
+box.appendChild(div);
+
+});
 
 }
 
@@ -775,50 +2067,228 @@ function statusClass(status){
 
 function toggleDark(){
 
-  document.body.classList.toggle("dark");
+document.body.classList.toggle("dark");
 
-  localStorage.setItem(
-    "jeeDarkMode",
-    document.body.classList.contains("dark")
-  );
-
-}
-
-
-/* =========================
-   SECURITY HELPERS
-========================= */
-
-function escapeJS(str){
-
-  return String(str)
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'");
-
-}
-
-function escapeAttr(str){
-
-  return String(str)
-    .replace(/&/g,"&amp;")
-    .replace(/"/g,"&quot;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;");
+localStorage.setItem(
+"darkMode",
+document.body.classList.contains("dark")
+);
 
 }
 
 
 /* =========================
-   START
+   BACKUP
 ========================= */
 
-if(localStorage.getItem("jeeDarkMode") === "true"){
+function exportData(){
 
-  document.body.classList.add("dark");
+const backup={
+
+main:data,
+
+target:
+localStorage.getItem("jeeTarget"),
+
+dark:
+localStorage.getItem("darkMode")
+
+};
+
+
+const blob=
+new Blob(
+[
+JSON.stringify(
+backup,
+null,
+2
+)
+],
+{
+type:"application/json"
+}
+);
+
+
+const link=
+document.createElement("a");
+
+link.href=
+URL.createObjectURL(blob);
+
+link.download=
+"JEE-2028-Backup.json";
+
+link.click();
 
 }
+
+
+/* =========================
+   RESTORE
+========================= */
+
+function importData(){
+
+const input=
+document.createElement("input");
+
+input.type="file";
+
+input.accept=".json";
+
+input.onchange=
+event=>{
+
+const file=
+event.target.files[0];
+
+if(!file)
+return;
+
+const reader=
+new FileReader();
+
+reader.onload=()=>{
+
+try{
+
+const backup=
+JSON.parse(
+reader.result
+);
+
+if(backup.main)
+data=backup.main;
+
+if(backup.target)
+localStorage.setItem(
+"jeeTarget",
+backup.target
+);
+
+if(backup.dark)
+localStorage.setItem(
+"darkMode",
+backup.dark
+);
+
+save();
+
+location.reload();
+
+}catch{
+
+alert(
+"Invalid backup file."
+);
+
+}
+
+};
+
+reader.readAsText(file);
+
+};
+
+input.click();
+
+}
+
+
+/* =========================
+   LOAD SAVED DATA
+========================= */
+
+function loadSaved(){
+
+if(
+localStorage.getItem(
+"darkMode"
+)==="true"
+){
+
+document.body.classList.add("dark");
+
+}
+
+
+if(data.backlog){
+
+document.getElementById(
+"phyBacklog"
+).value=
+data.backlog.p||"";
+
+document.getElementById(
+"chemBacklog"
+).value=
+data.backlog.c||"";
+
+document.getElementById(
+"mathBacklog"
+).value=
+data.backlog.m||"";
+
+document.getElementById(
+"backlogShow"
+).textContent=
+`Physics: ${data.backlog.p||0} | Chemistry: ${data.backlog.c||0} | Maths: ${data.backlog.m||0}`;
+
+}
+
+
+if(data.questions){
+
+document.getElementById(
+"qSolved"
+).value=
+data.questions.solved||0;
+
+document.getElementById(
+"qCorrect"
+).value=
+data.questions.correct||0;
+
+document.getElementById(
+"qWrong"
+).value=
+data.questions.wrong||0;
+
+const accuracy=
+data.questions.solved
+?
+Math.round(
+data.questions.correct/
+data.questions.solved*100
+)
+:0;
+
+document.getElementById(
+"accuracy"
+).textContent=
+"Accuracy: "+accuracy+"%";
+
+}
+
+
+loadTarget();
 
 renderChapters();
+
+renderRevisions();
+
+renderTasks();
+
+showTimer();
+
+updateDashboard();
+
+}
+
+
+loadSaved();
 
 </script>
 
