@@ -2,1447 +2,661 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>JEE 2028 — Mission IIT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEE Command Center</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-  background:#080b14;
-  color:#fff;
-  min-height:100vh;
+font-family:Arial,sans-serif;
+background:#f4f7fb;
+color:#172033;
+transition:.3s;
 }
-
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
+body.dark{background:#101522;color:#fff}
+header{
+padding:22px;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+text-align:center;
 }
+header h1{font-size:30px}
+header p{margin-top:6px;opacity:.9}
 
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
-}
+.container{max-width:1200px;margin:auto;padding:18px}
 
-.logo{
-  font-size:25px;
-  font-weight:800;
-}
-
-.logo span{
-  color:#8b6cff;
-}
-
-.profile{
-  background:#151a2b;
-  padding:10px 16px;
-  border-radius:20px;
-}
-
-.hero{
-  background:linear-gradient(135deg,#171d39,#101528);
-  border:1px solid #272e4a;
-  border-radius:25px;
-  padding:28px;
-  margin-bottom:20px;
-}
-
-.hero h1{
-  font-size:34px;
-  margin-bottom:8px;
-}
-
-.hero p{
-  color:#969fbd;
-  margin-bottom:22px;
-}
-
-.countdown{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-}
-
-.time{
-  background:#090d18;
-  border:1px solid #292f49;
-  border-radius:15px;
-  text-align:center;
-  padding:15px;
-}
-
-.time b{
-  display:block;
-  font-size:27px;
-  color:#9a83ff;
-}
-
-.time span{
-  color:#818aa7;
-  font-size:11px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-  margin-bottom:20px;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+margin-bottom:18px;
 }
 
 .card{
-  background:#111625;
-  border:1px solid #252c46;
-  border-radius:20px;
-  padding:20px;
+background:white;
+padding:18px;
+border-radius:18px;
+box-shadow:0 5px 18px #00000012;
+margin-bottom:15px;
 }
+.dark .card{background:#192235;color:white}
 
-.card small{
-  color:#8992ad;
+.card h2{margin-bottom:12px}
+
+input,select,button{
+width:100%;
+padding:11px;
+border-radius:10px;
+border:1px solid #d4d9e2;
+margin-top:8px;
+font-size:15px;
 }
-
-.card h2{
-  margin-top:8px;
-  font-size:27px;
+button{
+background:#2563eb;
+color:white;
+border:none;
+cursor:pointer;
+font-weight:bold;
 }
+button:hover{opacity:.9}
 
-.section-title{
-  font-size:22px;
-  font-weight:700;
-  margin:25px 0 14px;
-}
-
-.subjects{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.subject{
-  background:#111625;
-  border:1px solid #252c46;
-  border-radius:20px;
-  padding:20px;
-}
-
-.subject-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.subject-head h3{
-  font-size:20px;
-}
-
-.subject-percent{
-  color:#9b85ff;
-  font-weight:bold;
+.stat{
+font-size:30px;
+font-weight:bold;
+margin:8px 0;
 }
 
 .progress{
-  height:9px;
-  background:#252b40;
-  border-radius:20px;
-  margin:15px 0 8px;
-  overflow:hidden;
+height:12px;
+background:#e6eaf0;
+border-radius:20px;
+overflow:hidden;
+margin:8px 0;
+}
+.progress div{
+height:100%;
+background:linear-gradient(90deg,#2563eb,#7c3aed);
+width:0%;
 }
 
-.progress-bar{
-  height:100%;
-  width:0;
-  background:#8065ff;
-  border-radius:20px;
-  transition:.4s;
+.subject{
+border:1px solid #e1e5eb;
+padding:12px;
+border-radius:14px;
+margin:8px 0;
 }
 
-.subject-info{
-  color:#858eaa;
-  font-size:13px;
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-.target-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  background:#0a0f1c;
-  padding:13px;
-  border-radius:13px;
-  margin-bottom:9px;
-}
-
-.target-row.done span{
-  text-decoration:line-through;
-  color:#68718b;
-}
-
-.target-check{
-  width:19px;
-  height:19px;
-}
-
-.delete{
-  margin-left:auto;
-  background:#272d40;
-  color:#c8cede;
-  padding:6px 9px;
-  border-radius:8px;
-  border:0;
-  cursor:pointer;
-}
-
-.add-box{
-  display:flex;
-  gap:8px;
-  margin-bottom:15px;
-}
-
-input,select{
-  background:#0a0f1c;
-  border:1px solid #303750;
-  color:#fff;
-  padding:11px;
-  border-radius:10px;
-  outline:none;
-}
-
-.add-box input{
-  flex:1;
-}
-
-button{
-  border:0;
-  background:#8065ff;
-  color:#fff;
-  padding:11px 16px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-button:hover{
-  opacity:.85;
+.badge{
+display:inline-block;
+padding:6px 10px;
+border-radius:20px;
+background:#ede9fe;
+color:#6d28d9;
+font-weight:bold;
+margin:3px;
 }
 
 .timer{
-  text-align:center;
+font-size:48px;
+text-align:center;
+font-weight:bold;
+margin:15px;
 }
 
-.timer-display{
-  font-size:48px;
-  font-weight:800;
-  color:#9a83ff;
-  margin:15px 0;
+.center{text-align:center}
+
+.small{font-size:13px;opacity:.7}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+th,td{
+padding:9px;
+border-bottom:1px solid #ddd;
+text-align:left;
 }
 
-.secondary{
-  background:#272e43;
-}
-
-.streak-box{
-  text-align:center;
-  padding:10px;
-}
-
-.streak-number{
-  font-size:50px;
-  font-weight:800;
-  color:#ff9b42;
-  margin:10px;
-}
-
-.streak-message{
-  color:#929bb5;
-}
-
-.chapter-controls{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:15px;
-}
-
-.chapter-list{
-  max-height:430px;
-  overflow-y:auto;
-}
-
-.chapter{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:11px;
-  background:#0a0f1c;
-  border-radius:10px;
-  margin-bottom:7px;
-}
-
-.chapter input{
-  width:18px;
-  height:18px;
-}
-
-.chapter.completed span{
-  text-decoration:line-through;
-  color:#69738c;
-}
-
-.overall{
-  margin-top:20px;
-}
-
-.overall-number{
-  text-align:right;
-  color:#9c87ff;
-  font-weight:bold;
-}
-
-.footer{
-  text-align:center;
-  color:#626b83;
-  padding:30px 0 10px;
-  font-size:13px;
-}
-
-@media(max-width:800px){
-
-  .container{
-    padding:14px;
-  }
-
-  .hero h1{
-    font-size:27px;
-  }
-
-  .countdown{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .stats{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .subjects{
-    grid-template-columns:1fr;
-  }
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:450px){
-
-  .header{
-    margin-bottom:15px;
-  }
-
-  .logo{
-    font-size:19px;
-  }
-
-  .profile{
-    font-size:12px;
-    padding:8px 11px;
-  }
-
-  .card{
-    padding:15px;
-  }
-
-  .add-box{
-    flex-wrap:wrap;
-  }
-
-  .add-box input{
-    width:100%;
-  }
+@media(max-width:600px){
+header h1{font-size:24px}
+.row{grid-template-columns:1fr}
+.container{padding:10px}
 }
 </style>
 </head>
 
 <body>
 
+<header>
+<h1>🚀 JEE COMMAND CENTER</h1>
+<p>Your preparation. Your progress. Your mission.</p>
+</header>
+
 <div class="container">
 
-<!-- HEADER -->
-
-<div class="header">
-
-  <div class="logo">
-    🚀 JEE <span>2028</span>
-  </div>
-
-  <div class="profile">
-    Rohan 👋
-  </div>
-
-</div>
-
-
-<!-- HERO -->
-
-<div class="hero">
-
-  <h1>Mission IIT 🎯</h1>
-
-  <p>
-    Every lecture. Every question. Every revision.
-    Keep moving towards JEE 2028.
-  </p>
-
-  <div class="countdown">
-
-    <div class="time">
-      <b id="days">0</b>
-      <span>DAYS</span>
-    </div>
-
-    <div class="time">
-      <b id="hours">0</b>
-      <span>HOURS</span>
-    </div>
-
-    <div class="time">
-      <b id="minutes">0</b>
-      <span>MINUTES</span>
-    </div>
-
-    <div class="time">
-      <b id="seconds">0</b>
-      <span>SECONDS</span>
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- STATS -->
-
-<div class="stats">
-
-  <div class="card">
-    <small>🔥 Study Streak</small>
-    <h2 id="streakStat">0 Days</h2>
-  </div>
-
-  <div class="card">
-    <small>📚 Chapters Done</small>
-    <h2 id="chapterStat">0 / 0</h2>
-  </div>
-
-  <div class="card">
-    <small>🎯 Targets Done</small>
-    <h2 id="targetStat">0</h2>
-  </div>
-
-  <div class="card">
-    <small>📈 Overall Progress</small>
-    <h2 id="overallStat">0%</h2>
-  </div>
-
-</div>
-
-
-<!-- SUBJECT PROGRESS -->
-
-<div class="section-title">
-  📊 Subject Progress
-</div>
-
-<div class="subjects">
-
-  <div class="subject">
-
-    <div class="subject-head">
-      <h3>⚡ Physics</h3>
-      <span class="subject-percent" id="physicsPercent">0%</span>
-    </div>
-
-    <div class="progress">
-      <div class="progress-bar" id="physicsBar"></div>
-    </div>
-
-    <div class="subject-info" id="physicsInfo">
-      0 / 0 chapters
-    </div>
-
-  </div>
-
-
-  <div class="subject">
-
-    <div class="subject-head">
-      <h3>🧪 Chemistry</h3>
-      <span class="subject-percent" id="chemistryPercent">0%</span>
-    </div>
-
-    <div class="progress">
-      <div class="progress-bar" id="chemistryBar"></div>
-    </div>
-
-    <div class="subject-info" id="chemistryInfo">
-      0 / 0 chapters
-    </div>
-
-  </div>
-
-
-  <div class="subject">
-
-    <div class="subject-head">
-      <h3>📐 Mathematics</h3>
-      <span class="subject-percent" id="mathsPercent">0%</span>
-    </div>
-
-    <div class="progress">
-      <div class="progress-bar" id="mathsBar"></div>
-    </div>
-
-    <div class="subject-info" id="mathsInfo">
-      0 / 0 chapters
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- CHAPTER TRACKER -->
-
-<div class="section-title">
-  📚 Chapter Tracker
-</div>
-
-<div class="card">
-
-  <div class="chapter-controls">
-
-    <select id="chapterSubject" onchange="renderChapters()">
-
-      <option value="physics">
-        ⚡ Physics
-      </option>
-
-      <option value="chemistry">
-        🧪 Chemistry
-      </option>
-
-      <option value="maths">
-        📐 Mathematics
-      </option>
-
-    </select>
-
-  </div>
-
-  <div class="chapter-list" id="chapterList"></div>
-
-</div>
-
-
-<!-- TARGET + TIMER -->
-
+<!-- DASHBOARD -->
 <div class="grid">
 
-<!-- TARGETS -->
+<div class="card">
+<h2>🎯 Target</h2>
+<input id="target" placeholder="Example: AIR 1000">
+<button onclick="saveTarget()">Save Target</button>
+<p id="targetShow" class="small"></p>
+</div>
 
 <div class="card">
+<h2>🔥 Study Streak</h2>
+<div class="stat" id="streak">0 🔥</div>
+<button onclick="studyToday()">I Studied Today</button>
+</div>
 
-  <div class="section-title" style="margin-top:0">
-    🎯 Today's Targets
-  </div>
+<div class="card">
+<h2>🏆 Level</h2>
+<div class="stat">Lv. <span id="level">1</span></div>
+<p><span id="xp">0</span> XP</p>
+<div class="progress"><div id="xpBar"></div></div>
+</div>
 
-  <div class="add-box">
-
-    <input
-      id="targetInput"
-      placeholder="e.g. Physics 40 questions"
-    >
-
-    <button onclick="addTarget()">
-      + Add
-    </button>
-
-  </div>
-
-  <div id="targetList"></div>
+<div class="card">
+<h2>📈 JEE Readiness</h2>
+<div class="stat"><span id="readiness">0</span>%</div>
+<div class="progress"><div id="readinessBar"></div></div>
+</div>
 
 </div>
 
+<!-- SUBJECTS -->
+<div class="card">
+<h2>📚 Subject Progress</h2>
+
+<div class="subject">
+<b>⚡ Physics</b>
+<input type="number" id="phy" min="0" max="100" placeholder="Completion %">
+<div class="progress"><div id="phyBar"></div></div>
+</div>
+
+<div class="subject">
+<b>🧪 Chemistry</b>
+<input type="number" id="chem" min="0" max="100" placeholder="Completion %">
+<div class="progress"><div id="chemBar"></div></div>
+</div>
+
+<div class="subject">
+<b>📐 Mathematics</b>
+<input type="number" id="math" min="0" max="100" placeholder="Completion %">
+<div class="progress"><div id="mathBar"></div></div>
+</div>
+
+<button onclick="saveSubjects()">Save Subject Progress</button>
+</div>
+
+<!-- BACKLOG -->
+<div class="card">
+<h2>📦 Backlog Tracker</h2>
+
+<div class="row">
+<div>
+<label>Physics lectures remaining</label>
+<input id="phyBacklog" type="number" placeholder="50">
+</div>
+
+<div>
+<label>Chemistry lectures remaining</label>
+<input id="chemBacklog" type="number" placeholder="80">
+</div>
+
+<div>
+<label>Maths lectures remaining</label>
+<input id="mathBacklog" type="number" placeholder="75">
+</div>
+
+<div>
+<label>Daily lectures target</label>
+<input id="dailyLectures" type="number" placeholder="3">
+</div>
+</div>
+
+<button onclick="saveBacklog()">Save Backlog</button>
+<p id="backlogResult" style="margin-top:12px"></p>
+</div>
+
+<!-- QUESTION TRACKER -->
+<div class="card">
+<h2>📝 Question Tracker</h2>
+
+<div class="row">
+<div>
+<label>Attempted</label>
+<input id="attempted" type="number" value="0">
+</div>
+
+<div>
+<label>Correct</label>
+<input id="correct" type="number" value="0">
+</div>
+
+<div>
+<label>Wrong</label>
+<input id="wrong" type="number" value="0">
+</div>
+</div>
+
+<button onclick="saveQuestions()">Save Questions</button>
+
+<div class="grid" style="margin-top:12px">
+<div>
+<b>Attempted</b>
+<div class="stat" id="attemptedShow">0</div>
+</div>
+<div>
+<b>Accuracy</b>
+<div class="stat"><span id="accuracy">0</span>%</div>
+</div>
+</div>
+</div>
 
 <!-- TIMER -->
+<div class="card">
+<h2>⏱️ Focus Timer</h2>
+<div class="timer" id="timer">25:00</div>
 
-<div class="card timer">
+<div class="row">
+<button onclick="startTimer()">▶ Start</button>
+<button onclick="pauseTimer()">⏸ Pause</button>
+</div>
 
-  <div class="section-title" style="margin-top:0">
-    ⏱️ Study Timer
-  </div>
+<button onclick="resetTimer()">🔄 Reset</button>
+</div>
 
-  <div class="timer-display" id="timerDisplay">
-    00:00:00
-  </div>
+<!-- CHAPTER STATUS -->
+<div class="card">
+<h2>📚 Chapter Status</h2>
 
-  <button onclick="startTimer()">
-    START
-  </button>
+<div class="row">
+<input id="chapter" placeholder="Chapter name">
+<select id="chapterStatus">
+<option>Not Started</option>
+<option>Learning</option>
+<option>Revision</option>
+<option>Strong</option>
+</select>
+</div>
 
-  <button class="secondary" onclick="pauseTimer()">
-    PAUSE
-  </button>
+<button onclick="addChapter()">Add Chapter</button>
 
-  <button class="secondary" onclick="resetTimer()">
-    RESET
-  </button>
+<table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody id="chapterList"></tbody>
+</table>
+</div>
 
-  <p style="margin-top:12px;color:#7f89a5;font-size:12px">
-    Complete at least 25 minutes to count today's study streak.
-  </p>
+<!-- REVISION -->
+<div class="card">
+<h2>🔄 Revision System</h2>
 
+<div class="row">
+<input id="revisionChapter" placeholder="Chapter">
+<input id="revisionDate" type="date">
+</div>
+
+<button onclick="addRevision()">Add Revision</button>
+
+<div id="revisionList"></div>
+</div>
+
+<!-- SMART PLANNER -->
+<div class="card">
+<h2>🧠 Smart Study Planner</h2>
+
+<div class="row">
+<input id="studyHours" type="number" placeholder="Available study hours">
+<input id="plannerQuestions" type="number" placeholder="Questions target">
+</div>
+
+<button onclick="makePlan()">Generate Today's Plan</button>
+
+<div id="plan" style="margin-top:15px"></div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="card">
+<h2>🏆 Achievements</h2>
+<div id="achievements"></div>
+</div>
+
+<!-- SETTINGS -->
+<div class="card">
+<h2>⚙️ Settings & Backup</h2>
+
+<button onclick="toggleDark()">🌙 Dark / Light Mode</button>
+
+<div class="row">
+<button onclick="exportData()">⬇️ Export Backup</button>
+<button onclick="importData()">⬆️ Import Backup</button>
+</div>
+
+<input type="file" id="fileInput" accept=".json" style="display:none">
 </div>
 
 </div>
-
-
-<!-- STREAK -->
-
-<div class="section-title">
-  🔥 Study Streak
-</div>
-
-<div class="card streak-box">
-
-  <div class="streak-number">
-    🔥 <span id="streakNumber">0</span>
-  </div>
-
-  <div class="streak-message" id="streakMessage">
-    Start your first study session today.
-  </div>
-
-  <div style="margin-top:10px;color:#78829d">
-    Longest Streak:
-    <b id="longestStreak">0</b> days
-  </div>
-
-</div>
-
-
-<!-- OVERALL -->
-
-<div class="section-title">
-  📈 Overall JEE Progress
-</div>
-
-<div class="card overall">
-
-  <div class="overall-number" id="overallBig">
-    0%
-  </div>
-
-  <div class="progress">
-    <div class="progress-bar" id="overallBar"></div>
-  </div>
-
-</div>
-
-
-<div class="footer">
-  JEE 2028 — Mission IIT 🚀
-</div>
-
-</div>
-
 
 <script>
 
-/* =========================
-   DATA
-========================= */
-
-const chapters = {
-
-physics:[
-
-"Units & Measurements",
-"Motion in a Straight Line",
-"Motion in a Plane",
-"Laws of Motion",
-"Work, Energy & Power",
-"System of Particles & Rotational Motion",
-"Gravitation",
-"Mechanical Properties of Solids",
-"Mechanical Properties of Fluids",
-"Thermal Properties of Matter",
-"Thermodynamics",
-"Kinetic Theory",
-"Oscillations",
-"Waves"
-
-],
-
-chemistry:[
-
-"Some Basic Concepts of Chemistry",
-"Structure of Atom",
-"Classification of Elements",
-"Chemical Bonding",
-"Thermodynamics",
-"Equilibrium",
-"Redox Reactions",
-"Organic Chemistry — Basic Principles",
-"Hydrocarbons",
-"Solutions",
-"Electrochemistry",
-"Chemical Kinetics",
-"Surface Chemistry",
-"Coordination Compounds"
-
-],
-
-maths:[
-
-"Sets",
-"Relations & Functions",
-"Trigonometric Functions",
-"Complex Numbers",
-"Quadratic Equations",
-"Linear Inequalities",
-"Permutations & Combinations",
-"Binomial Theorem",
-"Sequences & Series",
-"Straight Lines",
-"Conic Sections",
-"Introduction to 3D Geometry",
-"Limits & Derivatives",
-"Statistics",
-"Probability"
-
-]
-
+let data = JSON.parse(localStorage.getItem("jeeApp")) || {
+target:"",
+streak:0,
+lastStudy:"",
+xp:0,
+subjects:{phy:0,chem:0,math:0},
+backlog:{phy:50,chem:80,math:75,daily:3},
+questions:{attempted:0,correct:0,wrong:0},
+chapters:[],
+revisions:[],
+dark:false
 };
 
-
-/* =========================
-   STORAGE
-========================= */
-
-let completed =
-JSON.parse(localStorage.getItem("jeeCompleted")) || {
-
-  physics:[],
-  chemistry:[],
-  maths:[]
-
-};
-
-let targets =
-JSON.parse(localStorage.getItem("jeeTargets")) || [];
-
-let streakData =
-JSON.parse(localStorage.getItem("jeeStreak")) || {
-
-  current:0,
-  longest:0,
-  lastStudyDate:null
-
-};
-
-
-/* =========================
-   SAVE
-========================= */
-
-function saveAll(){
-
-  localStorage.setItem(
-    "jeeCompleted",
-    JSON.stringify(completed)
-  );
-
-  localStorage.setItem(
-    "jeeTargets",
-    JSON.stringify(targets)
-  );
-
-  localStorage.setItem(
-    "jeeStreak",
-    JSON.stringify(streakData)
-  );
-
+function save(){
+localStorage.setItem("jeeApp",JSON.stringify(data));
+updateUI();
 }
 
-
-/* =========================
-   CHAPTER TRACKER
-========================= */
-
-function renderChapters(){
-
-  const subject =
-    document.getElementById("chapterSubject").value;
-
-  const list =
-    document.getElementById("chapterList");
-
-  list.innerHTML="";
-
-  chapters[subject].forEach(
-    (chapter,index)=>{
-
-      const done =
-        completed[subject].includes(index);
-
-      const div =
-        document.createElement("div");
-
-      div.className =
-        "chapter " +
-        (done ? "completed" : "");
-
-      div.innerHTML=`
-
-        <input
-          type="checkbox"
-          ${done ? "checked" : ""}
-          onchange="toggleChapter('${subject}',${index})"
-        >
-
-        <span>${chapter}</span>
-
-      `;
-
-      list.appendChild(div);
-
-    }
-  );
-
+function saveTarget(){
+data.target=document.getElementById("target").value;
+save();
 }
 
+function studyToday(){
 
-function toggleChapter(subject,index){
+let today=new Date().toDateString();
 
-  if(completed[subject].includes(index)){
-
-    completed[subject] =
-      completed[subject].filter(
-        x=>x!==index
-      );
-
-  }else{
-
-    completed[subject].push(index);
-
-  }
-
-  saveAll();
-
-  renderChapters();
-
-  updateProgress();
-
+if(data.lastStudy!==today){
+data.streak++;
+data.lastStudy=today;
+data.xp+=20;
+save();
+alert("🔥 Today's study recorded! +20 XP");
+}else{
+alert("Bhai, aaj already recorded hai 😎");
+}
 }
 
-
-/* =========================
-   PROGRESS
-========================= */
-
-function getProgress(subject){
-
-  const total =
-    chapters[subject].length;
-
-  const done =
-    completed[subject].length;
-
-  if(total===0) return 0;
-
-  return Math.round(
-    done/total*100
-  );
-
+function saveSubjects(){
+data.subjects.phy=Math.min(100,+document.getElementById("phy").value||0);
+data.subjects.chem=Math.min(100,+document.getElementById("chem").value||0);
+data.subjects.math=Math.min(100,+document.getElementById("math").value||0);
+data.xp+=10;
+save();
 }
 
+function saveBacklog(){
+data.backlog.phy=+document.getElementById("phyBacklog").value||0;
+data.backlog.chem=+document.getElementById("chemBacklog").value||0;
+data.backlog.math=+document.getElementById("mathBacklog").value||0;
+data.backlog.daily=+document.getElementById("dailyLectures").value||1;
 
-function updateProgress(){
+let total=data.backlog.phy+data.backlog.chem+data.backlog.math;
+let days=Math.ceil(total/data.backlog.daily);
 
-  const subjects =
-  ["physics","chemistry","maths"];
+document.getElementById("backlogResult").innerText=
+"📦 Total Backlog: "+total+
+" lectures | Approx. "+days+" days";
 
-  let total=0;
-  let done=0;
-
-  subjects.forEach(subject=>{
-
-    const t =
-      chapters[subject].length;
-
-    const d =
-      completed[subject].length;
-
-    total+=t;
-    done+=d;
-
-    const percent =
-      getProgress(subject);
-
-    document.getElementById(
-      subject+"Percent"
-    ).innerText =
-      percent+"%";
-
-    document.getElementById(
-      subject+"Bar"
-    ).style.width =
-      percent+"%";
-
-    document.getElementById(
-      subject+"Info"
-    ).innerText =
-      d+" / "+t+" chapters";
-
-  });
-
-
-  const overall =
-    total===0
-    ?0
-    :Math.round(done/total*100);
-
-  document.getElementById(
-    "overallStat"
-  ).innerText =
-    overall+"%";
-
-  document.getElementById(
-    "overallBig"
-  ).innerText =
-    overall+"%";
-
-  document.getElementById(
-    "overallBar"
-  ).style.width =
-    overall+"%";
-
-  document.getElementById(
-    "chapterStat"
-  ).innerText =
-    done+" / "+total;
-
+save();
 }
 
-
-/* =========================
-   TARGET SYSTEM
-========================= */
-
-function addTarget(){
-
-  const input =
-    document.getElementById(
-      "targetInput"
-    );
-
-  const text =
-    input.value.trim();
-
-  if(!text){
-
-    alert("Pehle target likho bhai 😄");
-
-    return;
-
-  }
-
-  targets.push({
-
-    id:Date.now(),
-
-    text:text,
-
-    done:false
-
-  });
-
-  input.value="";
-
-  saveAll();
-
-  renderTargets();
-
+function saveQuestions(){
+data.questions.attempted=+document.getElementById("attempted").value||0;
+data.questions.correct=+document.getElementById("correct").value||0;
+data.questions.wrong=+document.getElementById("wrong").value||0;
+data.xp+=Math.min(50,data.questions.correct);
+save();
 }
 
+function addChapter(){
+let name=document.getElementById("chapter").value;
+let status=document.getElementById("chapterStatus").value;
 
-function renderTargets(){
+if(!name)return;
 
-  const list =
-    document.getElementById(
-      "targetList"
-    );
-
-  list.innerHTML="";
-
-  targets.forEach(target=>{
-
-    const row =
-      document.createElement("div");
-
-    row.className =
-      "target-row " +
-      (target.done ? "done" : "");
-
-    row.innerHTML=`
-
-      <input
-        class="target-check"
-        type="checkbox"
-        ${target.done ? "checked" : ""}
-        onchange="toggleTarget(${target.id})"
-      >
-
-      <span>${escapeHTML(target.text)}</span>
-
-      <button
-        class="delete"
-        onclick="deleteTarget(${target.id})"
-      >
-        ×
-      </button>
-
-    `;
-
-    list.appendChild(row);
-
-  });
-
-
-  const done =
-    targets.filter(
-      t=>t.done
-    ).length;
-
-  document.getElementById(
-    "targetStat"
-  ).innerText =
-    done+" / "+targets.length;
-
+data.chapters.push({name,status});
+data.xp+=5;
+document.getElementById("chapter").value="";
+save();
 }
 
+function addRevision(){
+let chapter=document.getElementById("revisionChapter").value;
+let date=document.getElementById("revisionDate").value;
 
-function toggleTarget(id){
+if(!chapter||!date)return;
 
-  const target =
-    targets.find(
-      t=>t.id===id
-    );
+data.revisions.push({chapter,date});
+data.xp+=5;
 
-  if(!target) return;
+document.getElementById("revisionChapter").value="";
+document.getElementById("revisionDate").value="";
 
-  target.done =
-    !target.done;
-
-  saveAll();
-
-  renderTargets();
-
+save();
 }
 
+function makePlan(){
 
-function deleteTarget(id){
+let hours=+document.getElementById("studyHours").value||6;
+let questions=+document.getElementById("plannerQuestions").value||60;
 
-  targets =
-    targets.filter(
-      t=>t.id!==id
-    );
+let lecture=Math.round(hours*.5*10)/10;
+let revision=Math.round(hours*.25*10)/10;
+let practice=Math.round(hours*.25*10)/10;
 
-  saveAll();
-
-  renderTargets();
-
+document.getElementById("plan").innerHTML=`
+<div class="subject">
+<h3>📅 Today's Smart Plan</h3>
+<p>🎥 Lectures: <b>${lecture} hours</b></p>
+<p>🔄 Revision: <b>${revision} hours</b></p>
+<p>📝 Question Practice: <b>${practice} hours</b></p>
+<p>🎯 Questions Target: <b>${questions}</b></p>
+</div>
+`;
 }
 
-
-function escapeHTML(text){
-
-  const div =
-    document.createElement("div");
-
-  div.textContent=text;
-
-  return div.innerHTML;
-
-}
-
-
-/* =========================
-   STUDY TIMER
-========================= */
-
-let timerSeconds=0;
-
+let timerSeconds=1500;
 let timerInterval=null;
 
-let timerStarted=false;
-
-
-function updateTimer(){
-
-  const h =
-    Math.floor(
-      timerSeconds/3600
-    );
-
-  const m =
-    Math.floor(
-      (timerSeconds%3600)/60
-    );
-
-  const s =
-    timerSeconds%60;
-
-  document.getElementById(
-    "timerDisplay"
-  ).innerText =
-
-    String(h).padStart(2,"0")
-    +":"
-    +
-    String(m).padStart(2,"0")
-    +":"
-    +
-    String(s).padStart(2,"0");
-
+function showTimer(){
+let m=Math.floor(timerSeconds/60);
+let s=timerSeconds%60;
+document.getElementById("timer").innerText=
+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
 }
-
 
 function startTimer(){
+if(timerInterval)return;
 
-  if(timerInterval) return;
-
-  timerStarted=true;
-
-  timerInterval =
-    setInterval(()=>{
-
-      timerSeconds++;
-
-      updateTimer();
-
-      if(timerSeconds===1500){
-
-        registerStudy();
-
-      }
-
-    },1000);
-
+timerInterval=setInterval(()=>{
+if(timerSeconds>0){
+timerSeconds--;
+showTimer();
+}else{
+clearInterval(timerInterval);
+timerInterval=null;
+data.xp+=25;
+save();
+alert("🔥 Focus session complete! +25 XP");
 }
-
+},1000);
+}
 
 function pauseTimer(){
-
-  clearInterval(timerInterval);
-
-  timerInterval=null;
-
+clearInterval(timerInterval);
+timerInterval=null;
 }
-
 
 function resetTimer(){
-
-  pauseTimer();
-
-  timerSeconds=0;
-
-  timerStarted=false;
-
-  updateTimer();
-
+pauseTimer();
+timerSeconds=1500;
+showTimer();
 }
 
-
-/* =========================
-   STREAK SYSTEM
-========================= */
-
-function todayString(){
-
-  const d=new Date();
-
-  return d.toISOString()
-    .split("T")[0];
-
+function toggleDark(){
+data.dark=!data.dark;
+document.body.classList.toggle("dark",data.dark);
+save();
 }
 
-
-function registerStudy(){
-
-  const today =
-    todayString();
-
-  if(
-    streakData.lastStudyDate
-    ===today
-  ){
-
-    return;
-
-  }
-
-
-  const last =
-    streakData.lastStudyDate;
-
-  if(last){
-
-    const lastDate =
-      new Date(last);
-
-    const todayDate =
-      new Date(today);
-
-    const difference =
-      Math.round(
-        (todayDate-lastDate)
-        /(1000*60*60*24)
-      );
-
-    if(difference===1){
-
-      streakData.current++;
-
-    }else if(difference>1){
-
-      streakData.current=1;
-
-    }
-
-  }else{
-
-    streakData.current=1;
-
-  }
-
-
-  streakData.lastStudyDate=
-    today;
-
-
-  if(
-    streakData.current
-    >
-    streakData.longest
-  ){
-
-    streakData.longest =
-      streakData.current;
-
-  }
-
-
-  saveAll();
-
-  updateStreak();
-
-}
-
-
-function checkStreak(){
-
-  if(!streakData.lastStudyDate){
-
-    updateStreak();
-
-    return;
-
-  }
-
-  const last =
-    new Date(
-      streakData.lastStudyDate
-    );
-
-  const today =
-    new Date(
-      todayString()
-    );
-
-  const difference =
-    Math.round(
-      (today-last)
-      /(1000*60*60*24)
-    );
-
-  if(difference>1){
-
-    streakData.current=0;
-
-    saveAll();
-
-  }
-
-  updateStreak();
-
-}
-
-
-function updateStreak(){
-
-  document.getElementById(
-    "streakNumber"
-  ).innerText =
-    streakData.current;
-
-  document.getElementById(
-    "streakStat"
-  ).innerText =
-    streakData.current+" Days";
-
-  document.getElementById(
-    "longestStreak"
-  ).innerText =
-    streakData.longest;
-
-
-  let message =
-    "Start your first study session today.";
-
-  if(streakData.current===1){
-
-    message=
-      "🔥 First day complete! Keep going.";
-
-  }else if(streakData.current>1){
-
-    message=
-      "🔥 "+streakData.current+
-      " days in a row! Don't break it.";
-
-  }
-
-  document.getElementById(
-    "streakMessage"
-  ).innerText=
-    message;
-
-}
-
-
-/* =========================
-   JEE COUNTDOWN
-========================= */
-
-/*
-  Placeholder date.
-  Official JEE Main 2028 date
-  can be changed later.
-*/
-
-const jeeDate =
-  new Date(
-    "January 24, 2028 09:00:00"
-  ).getTime();
-
-
-function countdown(){
-
-  const now =
-    new Date().getTime();
-
-  const distance =
-    jeeDate-now;
-
-  if(distance<=0){
-
-    return;
-
-  }
-
-  const days =
-    Math.floor(
-      distance/
-      (1000*60*60*24)
-    );
-
-  const hours =
-    Math.floor(
-      (distance%
-      (1000*60*60*24))/
-      (1000*60*60)
-    );
-
-  const minutes =
-    Math.floor(
-      (distance%
-      (1000*60*60))/
-      (1000*60)
-    );
-
-  const seconds =
-    Math.floor(
-      (distance%
-      (1000*60))/
-      1000
-    );
-
-
-  document.getElementById(
-    "days"
-  ).innerText=days;
-
-  document.getElementById(
-    "hours"
-  ).innerText=hours;
-
-  document.getElementById(
-    "minutes"
-  ).innerText=minutes;
-
-  document.getElementById(
-    "seconds"
-  ).innerText=seconds;
-
-}
-
-
-/* =========================
-   INITIAL LOAD
-========================= */
-
-renderChapters();
-
-renderTargets();
-
-updateProgress();
-
-updateStreak();
-
-checkStreak();
-
-updateTimer();
-
-countdown();
-
-setInterval(
-  countdown,
-  1000
+function exportData(){
+
+let blob=new Blob(
+[JSON.stringify(data,null,2)],
+{type:"application/json"}
 );
+
+let a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="jee-backup.json";
+a.click();
+}
+
+function importData(){
+document.getElementById("fileInput").click();
+}
+
+document.getElementById("fileInput").addEventListener("change",function(e){
+
+let file=e.target.files[0];
+if(!file)return;
+
+let reader=new FileReader();
+
+reader.onload=function(){
+try{
+data=JSON.parse(reader.result);
+save();
+alert("✅ Backup imported!");
+}catch{
+alert("❌ Invalid backup file");
+}
+};
+
+reader.readAsText(file);
+});
+
+function updateUI(){
+
+document.getElementById("target").value=data.target;
+document.getElementById("targetShow").innerText=
+data.target?"🎯 Target: "+data.target:"No target set";
+
+document.getElementById("streak").innerText=data.streak+" 🔥";
+
+document.getElementById("level").innerText=
+Math.floor(data.xp/100)+1;
+
+document.getElementById("xp").innerText=data.xp;
+
+document.getElementById("xpBar").style.width=
+(data.xp%100)+"%";
+
+document.getElementById("phy").value=data.subjects.phy;
+document.getElementById("chem").value=data.subjects.chem;
+document.getElementById("math").value=data.subjects.math;
+
+document.getElementById("phyBar").style.width=data.subjects.phy+"%";
+document.getElementById("chemBar").style.width=data.subjects.chem+"%";
+document.getElementById("mathBar").style.width=data.subjects.math+"%";
+
+document.getElementById("phyBacklog").value=data.backlog.phy;
+document.getElementById("chemBacklog").value=data.backlog.chem;
+document.getElementById("mathBacklog").value=data.backlog.math;
+document.getElementById("dailyLectures").value=data.backlog.daily;
+
+document.getElementById("attempted").value=data.questions.attempted;
+document.getElementById("correct").value=data.questions.correct;
+document.getElementById("wrong").value=data.questions.wrong;
+
+document.getElementById("attemptedShow").innerText=
+data.questions.attempted;
+
+let acc=data.questions.attempted?
+Math.round(data.questions.correct/data.questions.attempted*100):0;
+
+document.getElementById("accuracy").innerText=acc;
+
+let avg=(data.subjects.phy+
+data.subjects.chem+
+data.subjects.math)/3;
+
+let readiness=Math.round(
+avg*.6+
+Math.min(acc,100)*.2+
+Math.min(data.streak*2,20)
+);
+
+readiness=Math.min(100,readiness);
+
+document.getElementById("readiness").innerText=readiness;
+document.getElementById("readinessBar").style.width=readiness+"%";
+
+let list=document.getElementById("chapterList");
+list.innerHTML="";
+
+data.chapters.forEach((c,i)=>{
+list.innerHTML+=`
+<tr>
+<td>${c.name}</td>
+<td><span class="badge">${c.status}</span></td>
+</tr>`;
+});
+
+let rev=document.getElementById("revisionList");
+rev.innerHTML="";
+
+data.revisions.forEach(r=>{
+rev.innerHTML+=`
+<div class="subject">
+🔄 <b>${r.chapter}</b><br>
+Next Revision: ${r.date}
+</div>`;
+});
+
+let achievements=[];
+
+if(data.streak>=7)
+achievements.push("🔥 7 Day Streak");
+
+if(data.questions.attempted>=100)
+achievements.push("📝 100 Questions");
+
+if(data.xp>=500)
+achievements.push("🏆 500 XP");
+
+if(data.subjects.phy>=50 &&
+data.subjects.chem>=50 &&
+data.subjects.math>=50)
+achievements.push("📚 50% Syllabus");
+
+if(!achievements.length)
+achievements.push("🎯 Keep studying to unlock achievements!");
+
+document.getElementById("achievements").innerHTML=
+achievements.map(x=>`<span class="badge">${x}</span>`).join("");
+
+document.body.classList.toggle("dark",data.dark);
+}
+
+updateUI();
+showTimer();
 
 </script>
 
