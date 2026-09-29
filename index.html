@@ -3,204 +3,256 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JEE Command Center</title>
+<title>JEE 2028 Command Center</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
-font-family:Arial,sans-serif;
-background:#f4f7fb;
-color:#172033;
-transition:.25s;
+  font-family:Arial, sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+  transition:.3s;
 }
 
 body.dark{
-background:#0d1422;
-color:#f5f7ff;
+  background:#0d1422;
+  color:#f5f7ff;
 }
 
 header{
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-color:white;
-padding:28px 18px;
-text-align:center;
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  color:white;
+  padding:30px 15px;
+  text-align:center;
 }
 
-header h1{font-size:30px}
-header p{margin-top:7px;opacity:.9}
+header h1{
+  font-size:30px;
+  margin-bottom:8px;
+}
 
 .container{
-max-width:1200px;
-margin:auto;
-padding:18px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:15px;
-margin-bottom:15px;
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
 }
 
 .card{
-background:white;
-border-radius:18px;
-padding:18px;
-margin-bottom:15px;
-box-shadow:0 5px 20px rgba(0,0,0,.08);
+  background:white;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 5px 20px #00000012;
 }
 
 .dark .card{
-background:#182235;
-color:white;
+  background:#172033;
 }
 
 h2{
-margin-bottom:14px;
-font-size:20px;
+  margin-bottom:15px;
 }
 
 input,select,button{
-width:100%;
-padding:11px;
-margin-top:8px;
-border-radius:10px;
-border:1px solid #d4d9e2;
-font-size:15px;
+  font:inherit;
 }
 
-button{
-background:#2563eb;
-color:white;
-border:0;
-font-weight:bold;
-cursor:pointer;
+input[type="text"]{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  margin-bottom:15px;
 }
 
-button:hover{opacity:.9}
-
-.stat{
-font-size:30px;
-font-weight:bold;
-margin:8px 0;
-}
-
-.progress{
-height:12px;
-background:#e6eaf0;
-border-radius:20px;
-overflow:hidden;
-margin-top:8px;
-}
-
-.progress div{
-height:100%;
-width:0%;
-background:linear-gradient(90deg,#2563eb,#7c3aed);
-transition:.4s;
+.dark input[type="text"]{
+  background:#0d1422;
+  color:white;
+  border-color:#334155;
 }
 
 .subject{
-border:1px solid #e1e5eb;
-padding:13px;
-border-radius:13px;
-margin:9px 0;
+  margin-top:25px;
 }
 
-.dark .subject{
-border-color:#334155;
+.subject-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
 }
 
-.row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+.progress{
+  height:10px;
+  background:#e5e7eb;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:15px;
 }
 
-.badge{
-display:inline-block;
-padding:6px 10px;
-border-radius:20px;
-background:#ede9fe;
-color:#6d28d9;
-font-weight:bold;
-margin:3px;
-font-size:13px;
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#2563eb,#7c3aed);
+  transition:.3s;
 }
 
-.dark .badge{
-background:#312e81;
-color:#ddd6fe;
+.chapter{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  margin:7px 0;
+  transition:.2s;
 }
 
-.timer{
-font-size:52px;
-font-weight:bold;
-text-align:center;
-margin:15px;
+.dark .chapter{
+  border-color:#334155;
 }
 
-.center{text-align:center}
-
-.chapter-row{
-display:flex;
-justify-content:space-between;
-gap:10px;
-padding:10px 0;
-border-bottom:1px solid #ddd;
+.chapter:hover{
+  transform:translateX(3px);
 }
 
-.dark .chapter-row{
-border-color:#334155;
+.chapter input{
+  width:18px;
+  height:18px;
 }
 
-.small{
-font-size:13px;
-opacity:.7;
-margin-top:7px;
+.chapter-name{
+  flex:1;
+  font-weight:600;
 }
 
-.plan-box{
-padding:15px;
-border-radius:14px;
-background:#eef2ff;
-margin-top:12px;
+.status{
+  padding:7px 8px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.dark .plan-box{
-background:#202c45;
+.status.not-started{
+  background:#fee2e2;
+  color:#b91c1c;
 }
 
-.danger{
-background:#dc2626;
+.status.learning{
+  background:#fef3c7;
+  color:#92400e;
 }
 
-.green{
-background:#16a34a;
+.status.strong{
+  background:#dcfce7;
+  color:#166534;
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:10px;
+.bulk{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:15px;
 }
 
-th,td{
-padding:9px;
-border-bottom:1px solid #ddd;
-text-align:left;
+.bulk button{
+  border:none;
+  padding:10px 14px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.dark th,.dark td{
-border-color:#334155;
+.btn-red{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.btn-yellow{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.btn-green{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.btn-blue{
+  background:#dbeafe;
+  color:#1d4ed8;
+}
+
+.topbar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:15px;
+}
+
+.topbar button{
+  padding:10px 15px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:#2563eb;
+  color:white;
+  font-weight:bold;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+}
+
+.stat{
+  padding:18px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#eff6ff,#f5f3ff);
+}
+
+.dark .stat{
+  background:#202b40;
+}
+
+.stat h3{
+  font-size:14px;
+  opacity:.7;
+  margin-bottom:8px;
+}
+
+.stat p{
+  font-size:25px;
+  font-weight:bold;
+}
+
+.hidden{
+  display:none;
 }
 
 @media(max-width:600px){
-header h1{font-size:24px}
-.container{padding:10px}
-.row{grid-template-columns:1fr}
-.timer{font-size:42px}
+  .container{
+    padding:12px;
+  }
+
+  header h1{
+    font-size:24px;
+  }
+
+  .chapter{
+    align-items:flex-start;
+  }
+
+  .status{
+    font-size:12px;
+  }
 }
 </style>
 </head>
@@ -208,340 +260,83 @@ header h1{font-size:24px}
 <body>
 
 <header>
-<h1>🚀 JEE COMMAND CENTER</h1>
-<p>Plan • Study • Practice • Revise • Conquer</p>
+  <h1>🚀 JEE 2028 Command Center</h1>
+  <p>Track your JEE preparation chapter by chapter</p>
 </header>
 
 <div class="container">
 
-<!-- DASHBOARD -->
+  <div class="topbar">
+    <button onclick="toggleDark()">🌙 Dark Mode</button>
+    <button onclick="selectAllVisible()">☑️ Select All</button>
+    <button onclick="clearSelection()">❌ Clear Selection</button>
+  </div>
 
-<div class="grid">
+  <div class="card">
+    <h2>📊 Overall Progress</h2>
 
-<div class="card">
-<h2>🎯 Target</h2>
-<input id="target" placeholder="Example: AIR 1000">
-<button onclick="saveTarget()">Save Target</button>
-<p id="targetShow" class="small"></p>
-</div>
+    <div class="stats">
+      <div class="stat">
+        <h3>Total Chapters</h3>
+        <p id="total">0</p>
+      </div>
 
-<div class="card">
-<h2>🔥 Study Streak</h2>
-<div class="stat" id="streak">0 🔥</div>
-<button onclick="studyToday()">I Studied Today</button>
-</div>
+      <div class="stat">
+        <h3>Not Started</h3>
+        <p id="notStarted">0</p>
+      </div>
 
-<div class="card">
-<h2>🏆 Level</h2>
-<div class="stat">Lv. <span id="level">1</span></div>
-<p><span id="xp">0</span> XP</p>
-<div class="progress">
-<div id="xpBar"></div>
-</div>
-</div>
+      <div class="stat">
+        <h3>Learning</h3>
+        <p id="learning">0</p>
+      </div>
 
-<div class="card">
-<h2>📈 JEE Readiness</h2>
-<div class="stat">
-<span id="readiness">0</span>%
-</div>
-<div class="progress">
-<div id="readinessBar"></div>
-</div>
-</div>
+      <div class="stat">
+        <h3>Strong</h3>
+        <p id="strong">0</p>
+      </div>
+    </div>
+  </div>
 
-</div>
+  <div class="card">
+    <h2>📚 Chapter Tracker</h2>
 
+    <input
+      type="text"
+      id="search"
+      placeholder="🔎 Search chapter..."
+      oninput="renderChapters()"
+    >
 
-<!-- SUBJECT PROGRESS -->
+    <div class="bulk">
+      <button class="btn-red" onclick="bulkStatus('Not Started')">
+        🔴 Set Not Started
+      </button>
 
-<div class="card">
+      <button class="btn-yellow" onclick="bulkStatus('Learning')">
+        🟡 Set Learning
+      </button>
 
-<h2>📚 Subject Progress</h2>
+      <button class="btn-green" onclick="bulkStatus('Strong')">
+        🟢 Set Strong
+      </button>
+    </div>
 
-<div class="subject">
-<b>⚡ Physics</b>
-<input id="phy" type="number" min="0" max="100" placeholder="Completion %">
-<div class="progress">
-<div id="phyBar"></div>
-</div>
-</div>
+    <p style="margin-bottom:15px;">
+      Selected: <b id="selectedCount">0</b>
+    </p>
 
-<div class="subject">
-<b>🧪 Chemistry</b>
-<input id="chem" type="number" min="0" max="100" placeholder="Completion %">
-<div class="progress">
-<div id="chemBar"></div>
-</div>
-</div>
-
-<div class="subject">
-<b>📐 Mathematics</b>
-<input id="math" type="number" min="0" max="100" placeholder="Completion %">
-<div class="progress">
-<div id="mathBar"></div>
-</div>
-</div>
-
-<button onclick="saveSubjects()">Save Subject Progress</button>
+    <div id="chapters"></div>
+  </div>
 
 </div>
-
-
-<!-- BACKLOG -->
-
-<div class="card">
-
-<h2>📦 Backlog Tracker</h2>
-
-<div class="row">
-
-<div>
-<label>Physics lectures remaining</label>
-<input id="phyBacklog" type="number">
-</div>
-
-<div>
-<label>Chemistry lectures remaining</label>
-<input id="chemBacklog" type="number">
-</div>
-
-<div>
-<label>Maths lectures remaining</label>
-<input id="mathBacklog" type="number">
-</div>
-
-<div>
-<label>Daily lectures target</label>
-<input id="dailyLectures" type="number">
-</div>
-
-</div>
-
-<button onclick="saveBacklog()">Save Backlog</button>
-
-<p id="backlogResult" class="small"></p>
-
-</div>
-
-
-<!-- CHAPTER TRACKER -->
-
-<div class="card">
-
-<h2>📚 Class 11 JEE Chapter Tracker</h2>
-
-<div class="row">
-
-<select id="chapterSubject" onchange="loadChapters()">
-
-<option value="">Select Subject</option>
-
-<option value="Physics">⚡ Physics</option>
-
-<option value="Chemistry">🧪 Chemistry</option>
-
-<option value="Mathematics">📐 Mathematics</option>
-
-</select>
-
-<select id="chapterName">
-
-<option value="">Select Chapter</option>
-
-</select>
-
-</div>
-
-<select id="chapterStatus">
-
-<option>Not Started</option>
-<option>Learning</option>
-<option>Revision</option>
-<option>Strong</option>
-
-</select>
-
-<button onclick="saveChapter()">✅ Save Chapter Status</button>
-
-<div id="allChapters" style="margin-top:15px"></div>
-
-</div>
-
-
-<!-- QUESTIONS -->
-
-<div class="card">
-
-<h2>📝 Question Tracker</h2>
-
-<div class="row">
-
-<div>
-<label>Attempted</label>
-<input id="attempted" type="number">
-</div>
-
-<div>
-<label>Correct</label>
-<input id="correct" type="number">
-</div>
-
-<div>
-<label>Wrong</label>
-<input id="wrong" type="number">
-</div>
-
-</div>
-
-<button onclick="saveQuestions()">Save Questions</button>
-
-<div class="grid" style="margin-top:15px">
-
-<div>
-<b>Questions</b>
-<div class="stat" id="attemptedShow">0</div>
-</div>
-
-<div>
-<b>Accuracy</b>
-<div class="stat">
-<span id="accuracy">0</span>%
-</div>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- TIMER -->
-
-<div class="card">
-
-<h2>⏱️ Focus Timer</h2>
-
-<div class="timer" id="timer">
-25:00
-</div>
-
-<div class="row">
-
-<button onclick="startTimer()">▶ Start</button>
-<button onclick="pauseTimer()">⏸ Pause</button>
-
-</div>
-
-<button onclick="resetTimer()">🔄 Reset</button>
-
-</div>
-
-
-<!-- REVISION -->
-
-<div class="card">
-
-<h2>🔄 Revision Tracker</h2>
-
-<div class="row">
-
-<input id="revisionChapter" placeholder="Chapter">
-
-<input id="revisionDate" type="date">
-
-</div>
-
-<button onclick="addRevision()">Add Revision</button>
-
-<div id="revisionList"></div>
-
-</div>
-
-
-<!-- SMART PLANNER -->
-
-<div class="card">
-
-<h2>🧠 Smart Study Planner</h2>
-
-<div class="row">
-
-<input id="studyHours"
-type="number"
-placeholder="Available study hours">
-
-<input id="plannerQuestions"
-type="number"
-placeholder="Questions target">
-
-</div>
-
-<button onclick="makePlan()">
-Generate Today's Plan
-</button>
-
-<div id="plan"></div>
-
-</div>
-
-
-<!-- ACHIEVEMENTS -->
-
-<div class="card">
-
-<h2>🏆 Achievements</h2>
-
-<div id="achievements"></div>
-
-</div>
-
-
-<!-- SETTINGS -->
-
-<div class="card">
-
-<h2>⚙️ Settings & Backup</h2>
-
-<button onclick="toggleDark()">
-🌙 Dark / Light Mode
-</button>
-
-<div class="row">
-
-<button onclick="exportData()">
-⬇️ Export Backup
-</button>
-
-<button onclick="importData()">
-⬆️ Import Backup
-</button>
-
-</div>
-
-<input
-type="file"
-id="fileInput"
-accept=".json"
-style="display:none"
->
-
-</div>
-
-</div>
-
 
 <script>
 
-/* =========================
-   JEE CLASS 11 CHAPTERS
-========================= */
-
-const chapters={
+const subjects = {
 
 Physics:[
-
 "Units and Measurements",
-"Mathematical Tools",
 "Motion in a Straight Line",
 "Motion in a Plane",
 "Laws of Motion",
@@ -554,34 +349,31 @@ Physics:[
 "Thermodynamics",
 "Kinetic Theory",
 "Oscillations",
-"Waves"
-
+"Waves",
+"Properties of Bulk Matter"
 ],
 
 Chemistry:[
-
 "Some Basic Concepts of Chemistry",
 "Structure of Atom",
-"Classification of Elements and Periodicity in Properties",
-"Chemical Bonding and Molecular Structure",
-"States of Matter",
+"Classification of Elements",
+"Chemical Bonding",
 "Thermodynamics",
 "Equilibrium",
 "Redox Reactions",
-"Hydrogen",
-"The s-Block Elements",
-"Organic Chemistry – Some Basic Principles and Techniques",
+"Organic Chemistry – Basic Principles",
 "Hydrocarbons",
+"States of Matter",
+"Periodic Table",
+"Hydrogen",
 "Environmental Chemistry"
-
 ],
 
 Mathematics:[
-
 "Sets",
 "Relations and Functions",
 "Trigonometric Functions",
-"Complex Numbers and Quadratic Equations",
+"Complex Numbers",
 "Linear Inequalities",
 "Permutations and Combinations",
 "Binomial Theorem",
@@ -592,51 +384,34 @@ Mathematics:[
 "Limits and Derivatives",
 "Statistics",
 "Probability"
-
 ]
 
 };
 
 
 /* =========================
-   DATA
+   LOAD SAVED DATA
 ========================= */
 
-let data=JSON.parse(
-localStorage.getItem("jeeCommandCenter")
-)||{
+let saved = localStorage.getItem("jeeChapterTracker");
 
-target:"",
-streak:0,
-lastStudy:"",
-xp:0,
+let data = saved ? JSON.parse(saved) : {};
 
-subjects:{
-phy:0,
-chem:0,
-math:0
-},
+for(const subject in subjects){
 
-backlog:{
-phy:50,
-chem:80,
-math:75,
-daily:3
-},
+  if(!data[subject]){
+    data[subject] = {};
+  }
 
-questions:{
-attempted:0,
-correct:0,
-wrong:0
-},
+  subjects[subject].forEach(chapter => {
 
-chapterProgress:{},
+    if(!data[subject][chapter]){
+      data[subject][chapter] = "Not Started";
+    }
 
-revisions:[],
+  });
 
-dark:false
-
-};
+}
 
 
 /* =========================
@@ -645,448 +420,351 @@ dark:false
 
 function save(){
 
-localStorage.setItem(
-"jeeCommandCenter",
-JSON.stringify(data)
-);
-
-updateUI();
+  localStorage.setItem(
+    "jeeChapterTracker",
+    JSON.stringify(data)
+  );
 
 }
 
 
 /* =========================
-   TARGET
+   SELECTED CHAPTERS
 ========================= */
 
-function saveTarget(){
+let selected = new Set();
 
-data.target=
-document.getElementById("target").value;
 
-save();
+/* =========================
+   RENDER
+========================= */
+
+function renderChapters(){
+
+  const box = document.getElementById("chapters");
+
+  const search =
+    document.getElementById("search").value.toLowerCase();
+
+  box.innerHTML = "";
+
+  for(const subject in subjects){
+
+    const filtered = subjects[subject].filter(chapter =>
+      chapter.toLowerCase().includes(search)
+    );
+
+    if(filtered.length === 0) continue;
+
+    const section = document.createElement("div");
+
+    section.className = "subject";
+
+    let html = `
+      <div class="subject-title">
+        <h2>${subject}</h2>
+        <span id="${subject}Percent">0%</span>
+      </div>
+
+      <div class="progress">
+        <div
+          class="progress-bar"
+          id="${subject}Bar">
+        </div>
+      </div>
+    `;
+
+    filtered.forEach(chapter => {
+
+      const status = data[subject][chapter];
+
+      const id =
+        subject + "_" +
+        chapter.replace(/[^a-zA-Z0-9]/g,"_");
+
+      html += `
+
+        <div class="chapter">
+
+          <input
+            type="checkbox"
+            class="chapterCheck"
+            data-subject="${escapeAttr(subject)}"
+            data-chapter="${escapeAttr(chapter)}"
+            ${selected.has(subject+"|||"+chapter) ? "checked" : ""}
+            onchange="toggleSelect(
+              '${escapeJS(subject)}',
+              '${escapeJS(chapter)}'
+            )"
+          >
+
+          <span class="chapter-name">
+            ${chapter}
+          </span>
+
+          <select
+            class="status ${statusClass(status)}"
+            onchange="
+              changeStatus(
+                '${escapeJS(subject)}',
+                '${escapeJS(chapter)}',
+                this.value
+              )
+            "
+          >
+
+            <option value="Not Started"
+              ${status==="Not Started"?"selected":""}>
+              🔴 Not Started
+            </option>
+
+            <option value="Learning"
+              ${status==="Learning"?"selected":""}>
+              🟡 Learning
+            </option>
+
+            <option value="Strong"
+              ${status==="Strong"?"selected":""}>
+              🟢 Strong
+            </option>
+
+          </select>
+
+        </div>
+      `;
+
+    });
+
+    section.innerHTML = html;
+
+    box.appendChild(section);
+
+    updateSubjectProgress(subject);
+
+  }
+
+  updateStats();
+
+  document.getElementById("selectedCount").innerText =
+    selected.size;
 
 }
 
 
 /* =========================
-   STREAK
+   CHANGE STATUS
 ========================= */
 
-function studyToday(){
+function changeStatus(subject,chapter,status){
 
-let today=
-new Date().toDateString();
+  data[subject][chapter] = status;
 
-if(data.lastStudy!==today){
+  save();
 
-data.streak++;
-
-data.lastStudy=today;
-
-data.xp+=20;
-
-save();
-
-alert("🔥 Study recorded! +20 XP");
-
-}else{
-
-alert("Bhai, aaj already record ho chuka hai 😎");
-
-}
+  renderChapters();
 
 }
 
 
 /* =========================
-   SUBJECTS
+   MULTIPLE SELECT
 ========================= */
 
-function saveSubjects(){
+function toggleSelect(subject,chapter){
 
-data.subjects.phy=
-Math.min(
-100,
-Math.max(
-0,
-Number(document.getElementById("phy").value)||0
-)
-);
+  const key = subject + "|||" + chapter;
 
-data.subjects.chem=
-Math.min(
-100,
-Math.max(
-0,
-Number(document.getElementById("chem").value)||0
-)
-);
+  if(selected.has(key)){
+    selected.delete(key);
+  }else{
+    selected.add(key);
+  }
 
-data.subjects.math=
-Math.min(
-100,
-Math.max(
-0,
-Number(document.getElementById("math").value)||0
-)
-);
-
-data.xp+=10;
-
-save();
+  document.getElementById("selectedCount").innerText =
+    selected.size;
 
 }
 
 
 /* =========================
-   BACKLOG
+   BULK STATUS
 ========================= */
 
-function saveBacklog(){
+function bulkStatus(status){
 
-data.backlog.phy=
-Number(document.getElementById("phyBacklog").value)||0;
+  if(selected.size === 0){
 
-data.backlog.chem=
-Number(document.getElementById("chemBacklog").value)||0;
+    alert("Pehle chapters select karo bhai 😄");
 
-data.backlog.math=
-Number(document.getElementById("mathBacklog").value)||0;
+    return;
 
-data.backlog.daily=
-Number(document.getElementById("dailyLectures").value)||1;
+  }
 
-let total=
-data.backlog.phy+
-data.backlog.chem+
-data.backlog.math;
+  selected.forEach(key => {
 
-let days=
-Math.ceil(
-total/data.backlog.daily
-);
+    const parts = key.split("|||");
 
-document.getElementById("backlogResult").innerText=
-"📦 Total Backlog: "+
-total+
-" lectures | Approx. "+
-days+
-" days";
+    const subject = parts[0];
+    const chapter = parts.slice(1).join("|||");
 
-save();
+    if(data[subject] && data[subject][chapter]){
+
+      data[subject][chapter] = status;
+
+    }
+
+  });
+
+  save();
+
+  selected.clear();
+
+  renderChapters();
 
 }
 
 
 /* =========================
-   CHAPTER DROPDOWN
+   SELECT ALL
 ========================= */
 
-function loadChapters(){
+function selectAllVisible(){
 
-let subject=
-document.getElementById("chapterSubject").value;
+  const search =
+    document.getElementById("search").value.toLowerCase();
 
-let dropdown=
-document.getElementById("chapterName");
+  for(const subject in subjects){
 
-dropdown.innerHTML=
-'<option value="">Select Chapter</option>';
+    subjects[subject].forEach(chapter => {
 
-if(!subject)return;
+      if(chapter.toLowerCase().includes(search)){
 
-chapters[subject].forEach(ch=>{
+        selected.add(subject+"|||"+chapter);
 
-let option=
-document.createElement("option");
+      }
 
-option.value=ch;
+    });
 
-option.textContent=ch;
+  }
 
-dropdown.appendChild(option);
-
-});
+  renderChapters();
 
 }
 
 
 /* =========================
-   SAVE CHAPTER
+   CLEAR SELECTION
 ========================= */
 
-function saveChapter(){
+function clearSelection(){
 
-let subject=
-document.getElementById("chapterSubject").value;
+  selected.clear();
 
-let chapter=
-document.getElementById("chapterName").value;
-
-let status=
-document.getElementById("chapterStatus").value;
-
-if(!subject||!chapter){
-
-alert("Subject aur chapter select karo.");
-
-return;
-
-}
-
-if(!data.chapterProgress[subject]){
-data.chapterProgress[subject]={};
-}
-
-data.chapterProgress[subject][chapter]=status;
-
-data.xp+=5;
-
-save();
-
-alert("✅ Chapter status saved!");
+  renderChapters();
 
 }
 
 
 /* =========================
-   SHOW CHAPTERS
+   SUBJECT PROGRESS
 ========================= */
 
-function showChapters(){
+function updateSubjectProgress(subject){
 
-let box=
-document.getElementById("allChapters");
+  const total = subjects[subject].length;
 
-box.innerHTML="";
+  let strong = 0;
 
-Object.keys(chapters).forEach(subject=>{
+  subjects[subject].forEach(chapter => {
 
-let html=
-`<div class="subject">
-<h3>${subject}</h3>`;
+    if(data[subject][chapter] === "Strong"){
+      strong++;
+    }
 
-chapters[subject].forEach(ch=>{
+  });
 
-let status=
-data.chapterProgress?.[subject]?.[ch]
-||
-"Not Started";
+  const percent =
+    total === 0 ? 0 :
+    Math.round((strong / total) * 100);
 
-html+=`
+  const bar =
+    document.getElementById(subject+"Bar");
 
-<div class="chapter-row">
+  const text =
+    document.getElementById(subject+"Percent");
 
-<span>${ch}</span>
+  if(bar) bar.style.width = percent+"%";
 
-<span class="badge">
-${status}
-</span>
-
-</div>
-
-`;
-
-});
-
-html+="</div>";
-
-box.innerHTML+=html;
-
-});
+  if(text) text.innerText = percent+"% Strong";
 
 }
 
 
 /* =========================
-   QUESTIONS
+   OVERALL STATS
 ========================= */
 
-function saveQuestions(){
+function updateStats(){
 
-data.questions.attempted=
-Number(document.getElementById("attempted").value)||0;
+  let total = 0;
+  let notStarted = 0;
+  let learning = 0;
+  let strong = 0;
 
-data.questions.correct=
-Number(document.getElementById("correct").value)||0;
+  for(const subject in subjects){
 
-data.questions.wrong=
-Number(document.getElementById("wrong").value)||0;
+    subjects[subject].forEach(chapter => {
 
-data.xp+=
-Math.min(
-50,
-data.questions.correct
-);
+      total++;
 
-save();
+      const status =
+        data[subject][chapter];
+
+      if(status === "Not Started"){
+        notStarted++;
+      }
+
+      if(status === "Learning"){
+        learning++;
+      }
+
+      if(status === "Strong"){
+        strong++;
+      }
+
+    });
+
+  }
+
+  document.getElementById("total").innerText = total;
+
+  document.getElementById("notStarted").innerText =
+    notStarted;
+
+  document.getElementById("learning").innerText =
+    learning;
+
+  document.getElementById("strong").innerText =
+    strong;
 
 }
 
 
 /* =========================
-   REVISION
+   STATUS CLASS
 ========================= */
 
-function addRevision(){
+function statusClass(status){
 
-let chapter=
-document.getElementById("revisionChapter").value;
+  if(status === "Learning"){
+    return "learning";
+  }
 
-let date=
-document.getElementById("revisionDate").value;
+  if(status === "Strong"){
+    return "strong";
+  }
 
-if(!chapter||!date){
-
-alert("Chapter aur date select karo.");
-
-return;
-
-}
-
-data.revisions.push({
-chapter:chapter,
-date:date
-});
-
-data.xp+=5;
-
-save();
-
-}
-
-
-/* =========================
-   SMART PLANNER
-========================= */
-
-function makePlan(){
-
-let hours=
-Number(
-document.getElementById("studyHours").value
-)||6;
-
-let questions=
-Number(
-document.getElementById("plannerQuestions").value
-)||60;
-
-let lecture=
-(hours*.5).toFixed(1);
-
-let revision=
-(hours*.25).toFixed(1);
-
-let practice=
-(hours*.25).toFixed(1);
-
-document.getElementById("plan").innerHTML=`
-
-<div class="plan-box">
-
-<h3>📅 Today's Plan</h3>
-
-<p>🎥 Lectures:
-<b>${lecture} hours</b>
-</p>
-
-<p>🔄 Revision:
-<b>${revision} hours</b>
-</p>
-
-<p>📝 Question Practice:
-<b>${practice} hours</b>
-</p>
-
-<p>🎯 Question Target:
-<b>${questions}</b>
-</p>
-
-</div>
-
-`;
-
-}
-
-
-/* =========================
-   TIMER
-========================= */
-
-let timerSeconds=1500;
-
-let timerInterval=null;
-
-
-function showTimer(){
-
-let minutes=
-Math.floor(timerSeconds/60);
-
-let seconds=
-timerSeconds%60;
-
-document.getElementById("timer").innerText=
-
-String(minutes).padStart(2,"0")
-+
-":"
-+
-String(seconds).padStart(2,"0");
-
-}
-
-
-function startTimer(){
-
-if(timerInterval)return;
-
-timerInterval=
-setInterval(()=>{
-
-if(timerSeconds>0){
-
-timerSeconds--;
-
-showTimer();
-
-}else{
-
-clearInterval(timerInterval);
-
-timerInterval=null;
-
-data.xp+=25;
-
-save();
-
-alert("🔥 Focus session complete! +25 XP");
-
-}
-
-},1000);
-
-}
-
-
-function pauseTimer(){
-
-clearInterval(timerInterval);
-
-timerInterval=null;
-
-}
-
-
-function resetTimer(){
-
-pauseTimer();
-
-timerSeconds=1500;
-
-showTimer();
+  return "not-started";
 
 }
 
@@ -1097,308 +775,50 @@ showTimer();
 
 function toggleDark(){
 
-data.dark=!data.dark;
+  document.body.classList.toggle("dark");
 
-document.body.classList.toggle(
-"dark",
-data.dark
-);
-
-save();
+  localStorage.setItem(
+    "jeeDarkMode",
+    document.body.classList.contains("dark")
+  );
 
 }
 
 
 /* =========================
-   BACKUP
+   SECURITY HELPERS
 ========================= */
 
-function exportData(){
+function escapeJS(str){
 
-let blob=
-new Blob(
-[
-JSON.stringify(data,null,2)
-],
-{
-type:"application/json"
-}
-);
-
-let a=
-document.createElement("a");
-
-a.href=
-URL.createObjectURL(blob);
-
-a.download=
-"JEE-Command-Center-Backup.json";
-
-a.click();
+  return String(str)
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
 
 }
 
-
-function importData(){
-
-document
-.getElementById("fileInput")
-.click();
-
-}
-
-
-document
-.getElementById("fileInput")
-.addEventListener(
-"change",
-function(e){
-
-let file=e.target.files[0];
-
-if(!file)return;
-
-let reader=
-new FileReader();
-
-reader.onload=function(){
-
-try{
-
-data=
-JSON.parse(reader.result);
-
-localStorage.setItem(
-"jeeCommandCenter",
-JSON.stringify(data)
-);
-
-updateUI();
-
-alert("✅ Backup imported!");
-
-}catch{
-
-alert("❌ Invalid backup file.");
-
-}
-
-};
-
-reader.readAsText(file);
-
-});
-
-
-/* =========================
-   UPDATE UI
-========================= */
-
-function updateUI(){
-
-document.getElementById("target").value=
-data.target;
-
-document.getElementById("targetShow").innerText=
-data.target
-?
-"🎯 Target: "+data.target
-:
-"No target set";
-
-
-document.getElementById("streak").innerText=
-data.streak+" 🔥";
-
-
-document.getElementById("level").innerText=
-Math.floor(data.xp/100)+1;
-
-
-document.getElementById("xp").innerText=
-data.xp;
-
-
-document.getElementById("xpBar").style.width=
-(data.xp%100)+"%";
-
-
-document.getElementById("phy").value=
-data.subjects.phy;
-
-document.getElementById("chem").value=
-data.subjects.chem;
-
-document.getElementById("math").value=
-data.subjects.math;
-
-
-document.getElementById("phyBar").style.width=
-data.subjects.phy+"%";
-
-document.getElementById("chemBar").style.width=
-data.subjects.chem+"%";
-
-document.getElementById("mathBar").style.width=
-data.subjects.math+"%";
-
-
-document.getElementById("phyBacklog").value=
-data.backlog.phy;
-
-document.getElementById("chemBacklog").value=
-data.backlog.chem;
-
-document.getElementById("mathBacklog").value=
-data.backlog.math;
-
-document.getElementById("dailyLectures").value=
-data.backlog.daily;
-
-
-document.getElementById("attempted").value=
-data.questions.attempted;
-
-document.getElementById("correct").value=
-data.questions.correct;
-
-document.getElementById("wrong").value=
-data.questions.wrong;
-
-
-document.getElementById("attemptedShow").innerText=
-data.questions.attempted;
-
-
-let accuracy=
-data.questions.attempted
-?
-Math.round(
-data.questions.correct/
-data.questions.attempted*
-100
-)
-:
-0;
-
-
-document.getElementById("accuracy").innerText=
-accuracy;
-
-
-/* READINESS */
-
-let avg=
-(
-data.subjects.phy+
-data.subjects.chem+
-data.subjects.math
-)/3;
-
-let readiness=
-Math.round(
-avg*.6+
-Math.min(accuracy,100)*.2+
-Math.min(data.streak*2,20)
-);
-
-readiness=
-Math.min(100,readiness);
-
-document.getElementById("readiness").innerText=
-readiness;
-
-document.getElementById("readinessBar").style.width=
-readiness+"%";
-
-
-/* REVISIONS */
-
-let revisionBox=
-document.getElementById("revisionList");
-
-revisionBox.innerHTML="";
-
-data.revisions.forEach(r=>{
-
-revisionBox.innerHTML+=`
-
-<div class="subject">
-
-🔄 <b>${r.chapter}</b>
-
-<br>
-
-<span class="small">
-Next Revision: ${r.date}
-</span>
-
-</div>
-
-`;
-
-});
-
-
-/* ACHIEVEMENTS */
-
-let achievements=[];
-
-if(data.streak>=7)
-achievements.push("🔥 7 Day Streak");
-
-if(data.questions.attempted>=100)
-achievements.push("📝 100 Questions");
-
-if(data.questions.attempted>=500)
-achievements.push("💪 500 Questions");
-
-if(data.xp>=500)
-achievements.push("🏆 500 XP");
-
-if(
-data.subjects.phy>=50 &&
-data.subjects.chem>=50 &&
-data.subjects.math>=50
-)
-achievements.push("📚 50% Syllabus");
-
-
-if(achievements.length===0){
-
-achievements.push(
-"🎯 Keep studying to unlock achievements!"
-);
-
-}
-
-
-document.getElementById("achievements").innerHTML=
-achievements
-.map(
-x=>`<span class="badge">${x}</span>`
-)
-.join("");
-
-
-document.body.classList.toggle(
-"dark",
-data.dark
-);
-
-
-showChapters();
+function escapeAttr(str){
+
+  return String(str)
+    .replace(/&/g,"&amp;")
+    .replace(/"/g,"&quot;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
 
 }
 
 
 /* =========================
-   START APP
+   START
 ========================= */
 
-updateUI();
+if(localStorage.getItem("jeeDarkMode") === "true"){
 
-showTimer();
+  document.body.classList.add("dark");
+
+}
+
+renderChapters();
 
 </script>
 
